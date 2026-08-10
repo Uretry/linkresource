@@ -1,0 +1,1518 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes" />
+  <title>HK Tech 中国香港 | 香港直供 · 先验后付</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+  <style>
+    /* ===== 设计系统 ===== */
+    :root {
+      --color-deep: #0b0f19;
+      --color-dark: #111827;
+      --color-surface: #161d2e;
+      --color-card: #1a2332;
+      --color-border: #2a3346;
+      --color-text-primary: #f1f5f9;
+      --color-text-secondary: #94a3b8;
+      --color-text-muted: #64748b;
+      --color-accent: #2563eb;
+      --color-accent-hover: #3b82f6;
+      --color-gold: #c9a84c;
+      --color-gold-light: #f5d97e;
+      --color-success: #22c55e;
+      --color-success-bg: rgba(34, 197, 94, 0.08);
+      --color-warning: #f59e0b;
+      --color-warning-bg: rgba(245, 158, 11, 0.08);
+      --color-danger: #ef4444;
+      --color-danger-bg: rgba(239, 68, 68, 0.08);
+      --radius-sm: 8px;
+      --radius-md: 14px;
+      --radius-lg: 20px;
+      --radius-xl: 28px;
+      --shadow-card: 0 8px 40px rgba(0, 0, 0, 0.3);
+      --shadow-glow: 0 0 60px rgba(37, 99, 235, 0.08);
+      --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; background: #0b0f19; color: #e2e8f0; line-height: 1.6; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+    .btn-primary { display: inline-block; background: linear-gradient(135deg, #2563eb, #1d4ed8); color: #fff; font-weight: 600; padding: 16px 40px; border-radius: 60px; text-decoration: none; font-size: 1.05rem; box-shadow: 0 8px 32px rgba(37,99,235,0.35); transition: var(--transition); border: none; cursor: pointer; width: 100%; max-width: 360px; text-align: center; letter-spacing: 0.3px; min-height: 56px; }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 12px 48px rgba(37,99,235,0.5); background: linear-gradient(135deg, #3b82f6, #2563eb); }
+    .btn-primary i { margin-right: 10px; }
+    .top-bar { background: rgba(11,15,25,0.92); backdrop-filter: blur(12px); color: #94a3b8; padding: 8px 0; font-size: 0.75rem; border-bottom: 1px solid rgba(255,255,255,0.04); position: relative; z-index: 101; }
+    .top-bar .container { display: flex; justify-content: space-between; flex-wrap: wrap; align-items: center; gap: 6px; }
+    .top-bar span i { margin-right: 6px; color: var(--color-gold); }
+    .top-bar a { color: #94a3b8; text-decoration: none; margin: 0 8px; transition: var(--transition); }
+    .top-bar a:hover { color: #fff; }
+    .header-main { background: rgba(11,15,25,0.92); backdrop-filter: blur(12px); padding: 14px 0; border-bottom: 1px solid rgba(255,255,255,0.04); position: sticky; top: 0; z-index: 100; }
+    .header-main .container { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
+    .logo { font-size: 1.4rem; font-weight: 800; color: #fff; letter-spacing: -0.5px; }
+    .logo span { color: var(--color-gold); }
+    .logo small { display: block; font-size: 0.55rem; font-weight: 400; color: #64748b; letter-spacing: 1px; margin-top: -2px; }
+    .header-contact { display: flex; gap: 16px; align-items: center; font-size: 0.85rem; flex-wrap: wrap; }
+    .header-contact i { color: var(--color-gold); margin-right: 4px; }
+    .header-contact a { color: #94a3b8; text-decoration: none; font-weight: 500; transition: var(--transition); padding: 4px 0; }
+    .header-contact a:hover { color: #fff; }
+    .hero { background: linear-gradient(160deg, #0b0f19 0%, #111827 40%, #0f172a 100%); padding: 80px 0 70px; text-align: center; border-bottom: 1px solid rgba(255,255,255,0.04); position: relative; overflow: hidden; min-height: 100vh; display: flex; align-items: center; }
+    .hero::before { content: ''; position: absolute; top: -40%; right: -20%; width: 60%; height: 120%; background: radial-gradient(ellipse, rgba(37,99,235,0.06) 0%, transparent 70%); pointer-events: none; }
+    .hero .container { position: relative; z-index: 1; width: 100%; }
+    .hero .highlight-box { display: inline-block; background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.06); border-radius: 60px; padding: 10px 24px; font-size: 0.85rem; font-weight: 500; color: #94a3b8; margin-bottom: 24px; letter-spacing: 0.5px; }
+    .hero .highlight-box i { color: var(--color-gold); margin-right: 8px; }
+    .hero h1 { font-size: 3.2rem; font-weight: 900; letter-spacing: -1px; margin-bottom: 16px; line-height: 1.1; }
+    .hero h1 span { background: linear-gradient(135deg, #f5d97e, #c9a84c); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .hero .subhead { font-size: 1.2rem; font-weight: 300; max-width: 700px; margin: 0 auto 20px; color: #94a3b8; opacity: 0.9; }
+    .hero .subhead strong { color: #fff; font-weight: 600; }
+    .hero .badges { display: flex; justify-content: center; gap: 16px; flex-wrap: wrap; margin: 24px 0 28px; }
+    .hero .badges div { font-size: 0.85rem; background: rgba(255,255,255,0.03); padding: 8px 20px; border-radius: 40px; border: 1px solid rgba(255,255,255,0.05); color: #94a3b8; }
+    .hero .badges i { color: var(--color-gold); margin-right: 6px; }
+    .hero .cta-group { margin-top: 24px; }
+    .section-title { text-align: center; font-size: 2rem; font-weight: 800; margin-bottom: 8px; color: #fff; letter-spacing: -0.5px; }
+    .section-sub { text-align: center; color: #94a3b8; max-width: 700px; margin: 0 auto 30px; font-size: 1.05rem; font-weight: 300; }
+    .trust-bar { background: var(--color-dark); padding: 20px 0; border-bottom: 1px solid rgba(255,255,255,0.03); }
+    .trust-bar .container { display: flex; justify-content: space-around; flex-wrap: wrap; gap: 12px; }
+    .trust-item { text-align: center; flex: 1 1 120px; padding: 4px; }
+    .trust-item i { font-size: 1.6rem; color: var(--color-gold); margin-bottom: 4px; display: block; }
+    .trust-item strong { display: block; font-weight: 600; font-size: 0.95rem; color: #e2e8f0; }
+    .trust-item small { color: #94a3b8; font-size: 0.75rem; }
+    .why-trust { background: var(--color-deep); padding: 50px 0; border-bottom: 1px solid rgba(255,255,255,0.03); }
+    .why-trust .content { max-width: 800px; margin: 0 auto; text-align: center; }
+    .why-trust .content h2 { font-size: 1.8rem; font-weight: 700; color: #fff; margin-bottom: 12px; }
+    .why-trust .content h2 i { color: var(--color-gold); margin-right: 8px; }
+    .why-trust .content .sub-en { font-size: 1rem; color: #64748b; margin-bottom: 16px; font-weight: 400; }
+    .why-trust .content p { color: #94a3b8; font-size: 1rem; max-width: 700px; margin: 0 auto 10px; }
+    .why-trust .content .highlight-quote { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06); padding: 16px 24px; border-radius: var(--radius-md); font-weight: 600; font-size: 1.05rem; color: #e2e8f0; margin-top: 16px; display: inline-block; }
+    .why-trust .content .highlight-quote i { color: var(--color-gold); margin-right: 8px; }
+    .why-trust .content .supply-chain-explainer { background: rgba(255,255,255,0.02); border-radius: var(--radius-md); padding: 18px 22px; margin-top: 16px; font-size: 0.95rem; color: #94a3b8; text-align: left; border-left: 3px solid var(--color-gold); }
+    .why-trust .content .supply-chain-explainer i { color: var(--color-gold); margin-right: 6px; }
+    .why-trust .content .bold-statement { background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.06); border-radius: var(--radius-md); padding: 20px 24px; margin-top: 20px; font-size: 1rem; color: #e2e8f0; text-align: left; line-height: 1.8; }
+    .why-trust .content .bold-statement i { color: var(--color-gold); margin-right: 8px; }
+    .cost-comparison { background: rgba(255,255,255,0.02); border-radius: var(--radius-md); padding: 20px; margin-top: 16px; text-align: left; border: 1px solid rgba(255,255,255,0.05); }
+    .cost-comparison .row { display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid rgba(255,255,255,0.04); font-size: 0.85rem; }
+    .cost-comparison .row:last-child { border-bottom: none; }
+    .cost-comparison .row .label { color: #94a3b8; }
+    .cost-comparison .row .value { font-weight: 600; color: #e2e8f0; }
+    .cost-comparison .highlight-row { background: rgba(34,197,94,0.06); border-radius: var(--radius-sm); padding: 8px 12px; margin-top: 8px; font-weight: 600; color: var(--color-success); border: 1px solid rgba(34,197,94,0.12); }
+    .company-show { background: var(--color-dark); padding: 50px 0; border-bottom: 1px solid rgba(255,255,255,0.03); }
+    .company-show .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px,1fr)); gap: 20px; margin-top: 20px; }
+    .company-show .grid .item { background: rgba(255,255,255,0.02); border-radius: var(--radius-md); padding: 12px; text-align: center; overflow: hidden; transition: var(--transition); border: 1px solid rgba(255,255,255,0.04); }
+    .company-show .grid .item:hover { transform: translateY(-4px); border-color: rgba(255,255,255,0.08); }
+    .company-show .grid .item .img-wrap { width: 100%; height: 130px; overflow: hidden; border-radius: var(--radius-sm); position: relative; background: var(--color-surface); }
+    .company-show .grid .item .img-wrap img { width: 100%; height: 100%; object-fit: cover; transition: var(--transition); }
+    .company-show .grid .item .img-wrap img:hover { transform: scale(1.03); }
+    .company-show .grid .item .img-wrap .overlay { position: absolute; bottom: 0; left: 0; right: 0; padding: 6px 10px; background: linear-gradient(transparent, rgba(0,0,0,0.6)); color: #fff; font-size: 0.65rem; font-weight: 500; text-align: left; pointer-events: none; }
+    .company-show .grid .item .label { font-weight: 500; font-size: 0.85rem; margin-top: 8px; color: #e2e8f0; }
+    .address-box { background: var(--color-surface); border-radius: var(--radius-lg); padding: 28px 24px; margin: 30px 0; border: 1px solid rgba(255,255,255,0.04); border-left: 3px solid var(--color-gold); }
+    .address-box h3 { display: flex; align-items: center; gap: 10px; font-size: 1.2rem; margin-bottom: 8px; color: #fff; }
+    .address-box h3 i { color: var(--color-gold); }
+    .address-box p { margin: 4px 0; color: #94a3b8; font-size: 0.95rem; }
+    .address-box .highlight { background: rgba(255,255,255,0.03); padding: 10px 14px; border-radius: var(--radius-sm); margin-top: 10px; font-weight: 400; font-size: 0.9rem; color: #94a3b8; border: 1px solid rgba(255,255,255,0.04); }
+    .address-box .map-container { border-radius: var(--radius-sm); overflow: hidden; margin-top: 12px; height: 200px; background: var(--color-deep); }
+    .address-box .map-container iframe { width: 100%; height: 100%; border: 0; filter: grayscale(0.3) brightness(0.7); }
+    .address-box .pickup-info { background: rgba(255,215,0,0.06); border: 1px solid rgba(255,215,0,0.12); border-radius: var(--radius-sm); padding: 10px 14px; margin-top: 12px; font-size: 0.85rem; color: #f5d97e; display: flex; align-items: center; gap: 8px; }
+    .address-box .pickup-info i { color: var(--color-gold); font-size: 1rem; }
+    .info-box { background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.04); border-radius: var(--radius-md); padding: 14px 18px; margin: 12px 0; font-size: 0.9rem; color: #94a3b8; }
+    .info-box i { margin-right: 8px; color: var(--color-gold); }
+    .info-box strong { color: #e2e8f0; }
+    .products { padding: 50px 0; background: var(--color-deep); }
+    .product-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px,1fr)); gap: 24px; margin-top: 16px; }
+    .product-card { background: var(--color-surface); border-radius: var(--radius-md); overflow: hidden; transition: var(--transition); border: 1px solid rgba(255,255,255,0.04); position: relative; cursor: pointer; -webkit-tap-highlight-color: transparent; }
+    .product-card:active { transform: scale(0.98); }
+    .product-card:hover { transform: translateY(-6px); border-color: rgba(255,255,255,0.08); box-shadow: var(--shadow-card); }
+    .product-image { background: var(--color-deep); height: 200px; display: flex; align-items: center; justify-content: center; overflow: hidden; position: relative; }
+    .product-image img { width: 100%; height: 100%; object-fit: cover; background: var(--color-deep); transition: var(--transition); }
+    .product-card:hover .product-image img { transform: scale(1.03); }
+    .product-image .badge-gallery { position: absolute; top: 10px; right: 10px; background: rgba(0,0,0,0.6); color: #fff; padding: 4px 10px; border-radius: 20px; font-size: 0.65rem; font-weight: 500; backdrop-filter: blur(4px); }
+    .product-card .zero-risk-badge { position: absolute; top: 12px; left: 12px; background: rgba(34,197,94,0.15); backdrop-filter: blur(8px); color: #22c55e; font-size: 0.6rem; font-weight: 700; padding: 4px 12px; border-radius: 40px; border: 1px solid rgba(34,197,94,0.3); display: flex; align-items: center; gap: 4px; z-index: 2; letter-spacing: 0.3px; }
+    .product-card .zero-risk-badge i { font-size: 0.65rem; }
+    .product-card .stock-urgency { position: absolute; top: 12px; right: 12px; background: rgba(239,68,68,0.12); backdrop-filter: blur(8px); color: #f87171; font-size: 0.6rem; font-weight: 700; padding: 4px 12px; border-radius: 40px; border: 1px solid rgba(239,68,68,0.2); z-index: 2; letter-spacing: 0.3px; }
+    .product-card .stock-urgency i { margin-right: 4px; }
+    .product-body { padding: 16px 18px 20px; }
+    .product-body h4 { font-size: 1rem; font-weight: 700; margin-bottom: 2px; color: #fff; }
+    .product-body .spec { font-size: 0.8rem; color: #94a3b8; margin-bottom: 6px; }
+    .product-body .colors { display: flex; gap: 8px; flex-wrap: wrap; margin: 6px 0; }
+    .product-body .colors .dot { width: 18px; height: 18px; border-radius: 50%; border: 1px solid rgba(255,255,255,0.1); display: inline-block; }
+    .product-body .gift { font-size: 0.75rem; color: var(--color-success); font-weight: 500; margin: 4px 0; }
+    .product-body .gift i { margin-right: 4px; }
+    .product-body .price-row { display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; margin: 8px 0 6px; }
+    .price-row .market { text-decoration: line-through; color: #64748b; font-size: 0.85rem; }
+    .price-row .our { font-weight: 700; font-size: 1.25rem; color: var(--color-gold-light); }
+    .price-row .discount { background: rgba(34,197,94,0.12); color: var(--color-success); font-weight: 600; padding: 2px 10px; border-radius: 40px; font-size: 0.7rem; border: 1px solid rgba(34,197,94,0.12); }
+    .product-body .stock-badge { display: inline-block; background: rgba(239,68,68,0.08); color: #f87171; font-size: 0.7rem; font-weight: 600; padding: 2px 12px; border-radius: 40px; border: 1px solid rgba(239,68,68,0.1); margin: 4px 0 6px; animation: pulse-stock 1.8s ease-in-out infinite; }
+    @keyframes pulse-stock { 0%,100% { opacity: 1; } 50% { opacity: 0.5; } }
+    .product-body .btn-order { display: inline-block; background: var(--color-accent); color: #fff; font-weight: 600; padding: 12px 20px; border-radius: 40px; text-decoration: none; font-size: 0.85rem; transition: var(--transition); margin-top: 6px; border: none; cursor: pointer; width: 100%; text-align: center; min-height: 48px; -webkit-tap-highlight-color: transparent; }
+    .product-body .btn-order:active { transform: scale(0.97); }
+    .product-body .btn-order:hover { background: var(--color-accent-hover); }
+    .product-body .btn-order i { margin-right: 6px; }
+    .product-body .verify-link { display: block; font-size: 0.7rem; color: #94a3b8; margin-top: 6px; text-decoration: none; font-weight: 400; transition: var(--transition); padding: 4px 0; }
+    .product-body .verify-link:hover { color: #fff; }
+    .product-body .verify-link i { margin-right: 4px; }
+    .product-body .authenticity-badge { background: rgba(255,255,255,0.03); border-radius: var(--radius-sm); padding: 6px 10px; font-size: 0.7rem; color: #94a3b8; margin: 4px 0; display: flex; align-items: center; gap: 6px; border: 1px solid rgba(255,255,255,0.04); }
+    .product-body .authenticity-badge i { color: var(--color-gold); }
+    .category-title { font-size: 1.4rem; font-weight: 700; margin: 30px 0 8px; border-bottom: 1px solid rgba(255,255,255,0.04); padding-bottom: 6px; color: #fff; }
+    .price-calculator { background: var(--color-surface); border-radius: var(--radius-lg); padding: 24px 20px; margin: 30px 0; border: 1px solid rgba(255,255,255,0.04); }
+    .price-calculator h3 { font-weight: 700; margin-bottom: 4px; color: #fff; }
+    .price-calculator .row { display: flex; flex-wrap: wrap; gap: 16px; align-items: center; margin-top: 12px; }
+    .price-calculator select, .price-calculator input { padding: 14px 16px; border: 1px solid rgba(255,255,255,0.06); border-radius: var(--radius-sm); font-size: 1rem; font-family: inherit; background: var(--color-deep); color: #e2e8f0; flex: 1; min-width: 180px; outline: none; transition: var(--transition); min-height: 50px; }
+    .price-calculator select:focus, .price-calculator input:focus { border-color: var(--color-accent); }
+    .price-calculator .result-box { background: var(--color-deep); border-radius: var(--radius-sm); padding: 16px; margin-top: 12px; display: flex; flex-wrap: wrap; gap: 20px; justify-content: center; border: 1px solid rgba(255,255,255,0.04); }
+    .price-calculator .result-box .item { text-align: center; }
+    .price-calculator .result-box .item .amount { font-size: 1.4rem; font-weight: 700; color: var(--color-gold-light); }
+    .price-calculator .result-box .item .label { font-size: 0.8rem; color: #94a3b8; }
+    .price-calculator .rate-note { font-size: 0.75rem; color: #94a3b8; text-align: center; margin-top: 8px; }
+    .price-calculator .rate-note i { color: var(--color-gold); }
+    .price-calculator .rate-disclaimer { font-size: 0.7rem; color: #94a3b8; text-align: center; margin-top: 4px; opacity: 0.8; }
+    .price-calculator .rate-disclaimer i { margin-right: 4px; color: var(--color-gold); }
+    .product-compare { background: var(--color-surface); border-radius: var(--radius-lg); padding: 20px; margin: 20px 0; border: 1px solid rgba(255,255,255,0.04); overflow-x: auto; }
+    .product-compare table { width: 100%; border-collapse: collapse; font-size: 0.85rem; min-width: 320px; }
+    .product-compare th, .product-compare td { padding: 12px 10px; border-bottom: 1px solid rgba(255,255,255,0.04); text-align: left; }
+    .product-compare th { background: rgba(255,255,255,0.02); font-weight: 600; color: #e2e8f0; }
+    .product-compare td:last-child { font-weight: 600; color: var(--color-gold-light); }
+    .product-compare .price-explainer { background: rgba(255,255,255,0.02); border-radius: var(--radius-sm); padding: 10px 14px; margin-top: 12px; font-size: 0.85rem; color: #94a3b8; border: 1px solid rgba(255,255,255,0.04); }
+    .product-compare .trust-footer { background: rgba(34,197,94,0.04); border: 1px solid rgba(34,197,94,0.08); border-radius: var(--radius-md); padding: 12px 16px; margin-top: 16px; font-weight: 500; color: #94a3b8; font-size: 0.95rem; text-align: center; }
+    .product-compare .trust-footer i { color: var(--color-success); margin-right: 8px; }
+    .steps { background: var(--color-deep); padding: 50px 0; }
+    .step-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px,1fr)); gap: 24px; margin-top: 16px; }
+    .step-item { text-align: center; padding: 16px; background: var(--color-surface); border-radius: var(--radius-md); border: 1px solid rgba(255,255,255,0.04); }
+    .step-item .icon-circle { width: 72px; height: 72px; background: rgba(37,99,235,0.08); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 12px; font-size: 1.8rem; color: var(--color-gold); border: 1px solid rgba(255,255,255,0.04); }
+    .step-item h4 { font-weight: 700; font-size: 1rem; color: #fff; }
+    .step-item p { color: #94a3b8; font-size: 0.85rem; }
+    .cargo-inspection-note { background: rgba(37,99,235,0.08); border: 2px solid var(--color-accent); border-radius: var(--radius-md); padding: 16px 20px; margin-top: 24px; text-align: center; font-weight: 500; color: #e2e8f0; font-size: 1rem; }
+    .cargo-inspection-note i { color: var(--color-gold); margin-right: 10px; font-size: 1.2rem; }
+    .cargo-inspection-note .highlight { color: var(--color-gold-light); font-weight: 600; }
+    .cargo-inspection-note .tutanak { display: block; margin-top: 8px; font-size: 0.85rem; font-weight: 400; color: #94a3b8; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 8px; }
+    .cargo-inspection-note .tutanak i { color: var(--color-gold); margin-right: 6px; font-size: 0.9rem; }
+    .return-promise { text-align: center; margin-top: 20px; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.06); border-radius: var(--radius-md); padding: 16px 20px; font-weight: 600; color: #e2e8f0; font-size: 1rem; }
+    .return-promise i { color: var(--color-gold); margin-right: 8px; }
+    .return-promise .sub { font-weight: 400; font-size: 0.9rem; color: #94a3b8; }
+    .return-promise .note { display: block; font-weight: 400; font-size: 0.8rem; color: #64748b; margin-top: 4px; }
+    .video-section { background: var(--color-dark); padding: 30px 0; }
+    .video-container { max-width: 700px; margin: 0 auto; background: var(--color-deep); border-radius: var(--radius-md); overflow: hidden; border: 1px solid rgba(255,255,255,0.04); }
+    .video-container video { width: 100%; display: block; }
+    .verification { background: var(--color-dark); padding: 50px 0; }
+    .veri-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px,1fr)); gap: 20px; margin-top: 16px; }
+    .veri-item { background: var(--color-surface); padding: 20px; border-radius: var(--radius-md); border: 1px solid rgba(255,255,255,0.04); border-left: 3px solid var(--color-gold); }
+    .veri-item i { color: var(--color-gold); font-size: 1.2rem; margin-bottom: 6px; }
+    .veri-item h4 { font-weight: 700; font-size: 1rem; margin-bottom: 4px; color: #fff; }
+    .veri-item p { color: #94a3b8; font-size: 0.85rem; }
+    .imei-simulator { background: var(--color-surface); border-radius: var(--radius-md); padding: 24px; margin-top: 24px; border: 1px solid rgba(255,255,255,0.04); max-width: 500px; margin-left: auto; margin-right: auto; }
+    .imei-simulator h4 { font-weight: 700; margin-bottom: 8px; display: flex; align-items: center; gap: 8px; color: #fff; }
+    .imei-simulator h4 i { color: var(--color-gold); }
+    .imei-simulator .input-group { display: flex; gap: 10px; flex-wrap: wrap; }
+    .imei-simulator .input-group input { flex: 1; padding: 14px 14px; border: 1px solid rgba(255,255,255,0.06); border-radius: var(--radius-sm); font-size: 1rem; background: var(--color-deep); color: #e2e8f0; min-width: 180px; outline: none; transition: var(--transition); min-height: 50px; }
+    .imei-simulator .input-group input:focus { border-color: var(--color-accent); }
+    .imei-simulator .input-group button { background: var(--color-accent); color: #fff; border: none; padding: 14px 24px; border-radius: var(--radius-sm); font-weight: 600; cursor: pointer; transition: var(--transition); min-height: 50px; min-width: 80px; }
+    .imei-simulator .input-group button:hover { background: var(--color-accent-hover); }
+    .imei-simulator .input-group button:active { transform: scale(0.97); }
+    .imei-simulator .result { margin-top: 12px; padding: 12px 16px; border-radius: var(--radius-sm); display: none; font-weight: 600; }
+    .imei-simulator .result.success { background: rgba(34,197,94,0.06); color: var(--color-success); display: block; border: 1px solid rgba(34,197,94,0.08); }
+    .imei-simulator .result.error { background: rgba(239,68,68,0.06); color: #f87171; display: block; border: 1px solid rgba(239,68,68,0.08); }
+    .usdt-guide { background: var(--color-deep); padding: 50px 0; border-top: 1px solid rgba(255,255,255,0.03); border-bottom: 1px solid rgba(255,255,255,0.03); }
+    .usdt-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin-top: 20px; }
+    .usdt-grid .card { background: var(--color-surface); padding: 24px; border-radius: var(--radius-md); border: 1px solid rgba(255,255,255,0.04); }
+    .usdt-grid .card h4 { font-weight: 700; margin-bottom: 8px; display: flex; align-items: center; gap: 8px; color: #fff; }
+    .usdt-grid .card ul { list-style: none; padding: 0; }
+    .usdt-grid .card ul li { padding: 4px 0; display: flex; align-items: center; gap: 8px; color: #94a3b8; }
+    .usdt-grid .card ul li i { color: var(--color-success); width: 20px; }
+    .wallet-icons { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 12px; }
+    .wallet-icons span { background: rgba(255,255,255,0.04); padding: 6px 14px; border-radius: 40px; font-weight: 500; font-size: 0.8rem; color: #94a3b8; border: 1px solid rgba(255,255,255,0.04); }
+    .usdt-advantage { background: rgba(34,197,94,0.04); border: 1px solid rgba(34,197,94,0.06); border-radius: var(--radius-sm); padding: 10px 14px; margin-top: 10px; font-size: 0.85rem; color: #94a3b8; }
+    .usdt-advantage i { color: var(--color-success); margin-right: 6px; }
+    .usdt-disclaimer { font-size: 0.8rem; color: #64748b; margin-top: 8px; font-style: italic; }
+    .usdt-real-time { background: rgba(255,255,255,0.02); border-radius: var(--radius-sm); padding: 8px 14px; margin-top: 10px; font-size: 0.85rem; font-weight: 500; color: #e2e8f0; text-align: center; border: 1px solid rgba(255,255,255,0.04); }
+    .usdt-real-time i { color: var(--color-gold); margin-right: 6px; }
+    .rate-lock-note { background: rgba(245,158,11,0.04); border: 1px solid rgba(245,158,11,0.06); border-radius: var(--radius-sm); padding: 10px 14px; margin-top: 10px; font-size: 0.85rem; color: #94a3b8; text-align: center; }
+    .rate-lock-note i { color: var(--color-gold); margin-right: 6px; }
+    .usdt-security { background: rgba(34,197,94,0.04); border: 1px solid rgba(34,197,94,0.06); border-radius: var(--radius-sm); padding: 10px 14px; margin-top: 10px; font-size: 0.85rem; color: #94a3b8; display: flex; align-items: flex-start; gap: 8px; }
+    .usdt-security i { color: var(--color-success); margin-top: 2px; }
+    .usdt-helper { background: rgba(37,99,235,0.04); border: 1px solid rgba(37,99,235,0.06); border-radius: var(--radius-sm); padding: 10px 14px; margin-top: 10px; font-size: 0.85rem; color: #94a3b8; display: flex; align-items: flex-start; gap: 8px; }
+    .usdt-helper i { color: var(--color-accent); margin-top: 2px; }
+    .usdt-live-help { background: rgba(34,197,94,0.06); border: 1px solid rgba(34,197,94,0.12); border-radius: var(--radius-sm); padding: 12px 16px; margin-top: 16px; font-size: 0.95rem; color: #e2e8f0; text-align: center; display: flex; align-items: center; justify-content: center; gap: 10px; }
+    .usdt-live-help i { color: var(--color-gold); font-size: 1.2rem; }
+    .rate-guarantee { background: rgba(34,197,94,0.04); border: 1px solid rgba(34,197,94,0.06); border-radius: var(--radius-sm); padding: 8px 14px; margin-top: 6px; font-size: 0.8rem; color: #94a3b8; text-align: center; }
+    .rate-guarantee i { color: var(--color-success); margin-right: 6px; }
+    .usdt-calculator { background: rgba(255,255,255,0.02); border-radius: var(--radius-sm); padding: 16px; margin-top: 16px; border: 1px solid rgba(255,255,255,0.04); }
+    .usdt-calculator label { font-weight: 600; display: block; margin-bottom: 4px; font-size: 0.9rem; color: #e2e8f0; }
+    .usdt-calculator .input-group { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
+    .usdt-calculator .input-group input { flex: 1; padding: 12px 14px; border: 1px solid rgba(255,255,255,0.06); border-radius: var(--radius-sm); font-size: 1rem; background: var(--color-deep); color: #e2e8f0; min-width: 120px; outline: none; min-height: 48px; }
+    .usdt-calculator .input-group input:focus { border-color: var(--color-accent); }
+    .usdt-calculator .input-group span { font-weight: 600; color: var(--color-gold-light); }
+    .usdt-calculator .result-calc { margin-top: 8px; font-weight: 500; color: #94a3b8; }
+    .warranty-card { background: linear-gradient(145deg, #111827, #0b0f19); border-radius: var(--radius-lg); padding: 24px 20px; margin: 20px 0; color: #fff; border: 1px solid rgba(255,255,255,0.04); }
+    .warranty-card .header { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(255,255,255,0.04); padding-bottom: 12px; margin-bottom: 12px; }
+    .warranty-card .header .badge { background: var(--color-gold); color: #0b0f19; font-weight: 700; padding: 4px 16px; border-radius: 40px; font-size: 0.7rem; letter-spacing: 0.5px; }
+    .warranty-card .body { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; font-size: 0.85rem; }
+    .warranty-card .body .label { color: #94a3b8; font-weight: 400; }
+    .warranty-card .body .value { color: #fff; font-weight: 500; }
+    .warranty-card .footer { margin-top: 12px; padding-top: 12px; border-top: 1px solid rgba(255,255,255,0.04); font-size: 0.75rem; color: #94a3b8; text-align: center; }
+    .warranty-card .footer i { color: var(--color-success); margin-right: 4px; }
+    .warranty-table { background: var(--color-surface); border-radius: var(--radius-md); padding: 16px 14px; border: 1px solid rgba(255,255,255,0.04); margin: 20px 0; overflow-x: auto; }
+    .warranty-table table { width: 100%; border-collapse: collapse; font-size: 0.85rem; min-width: 320px; }
+    .warranty-table th, .warranty-table td { padding: 10px 8px; border-bottom: 1px solid rgba(255,255,255,0.04); text-align: left; }
+    .warranty-table th { background: rgba(255,255,255,0.02); font-weight: 600; color: #e2e8f0; }
+    .tracking-section { background: var(--color-dark); padding: 50px 0; border-top: 1px solid rgba(255,255,255,0.03); border-bottom: 1px solid rgba(255,255,255,0.03); }
+    .tracking-box { max-width: 500px; margin: 0 auto; }
+    .tracking-box .input-group { display: flex; gap: 10px; flex-wrap: wrap; }
+    .tracking-box .input-group input { flex: 1; padding: 14px 14px; border: 1px solid rgba(255,255,255,0.06); border-radius: var(--radius-sm); font-size: 1rem; background: var(--color-deep); color: #e2e8f0; min-width: 180px; outline: none; transition: var(--transition); min-height: 50px; }
+    .tracking-box .input-group input:focus { border-color: var(--color-accent); }
+    .tracking-box .input-group button { background: var(--color-accent); color: #fff; border: none; padding: 14px 24px; border-radius: var(--radius-sm); font-weight: 600; cursor: pointer; transition: var(--transition); min-height: 50px; }
+    .tracking-box .input-group button:hover { background: var(--color-accent-hover); }
+    .tracking-box .input-group button:active { transform: scale(0.97); }
+    .tracking-result { margin-top: 16px; padding: 16px; border-radius: var(--radius-sm); display: none; background: var(--color-surface); border: 1px solid rgba(255,255,255,0.04); }
+    .tracking-result .status-item { display: flex; align-items: center; gap: 12px; padding: 8px 0; border-bottom: 1px solid rgba(255,255,255,0.04); }
+    .tracking-result .status-item:last-child { border-bottom: 0; }
+    .tracking-result .status-item .icon { width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.8rem; flex-shrink: 0; }
+    .tracking-result .status-item .icon.done { background: rgba(34,197,94,0.1); color: var(--color-success); }
+    .tracking-result .status-item .icon.pending { background: rgba(245,158,11,0.1); color: var(--color-warning); }
+    .tracking-result .status-item .icon.future { background: rgba(255,255,255,0.04); color: #64748b; }
+    .tracking-result .status-item .info .title { font-weight: 600; font-size: 0.9rem; color: #e2e8f0; }
+    .tracking-result .status-item .info .time { font-size: 0.75rem; color: #94a3b8; }
+    .tracking-result .status-item .info .desc { font-size: 0.8rem; color: #94a3b8; }
+    .tracking-timeline { margin-top: 16px; padding: 16px; background: var(--color-deep); border-radius: var(--radius-sm); border: 1px solid rgba(255,255,255,0.04); display: none; }
+    .tracking-timeline .tl-item { display: flex; gap: 14px; padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.04); }
+    .tracking-timeline .tl-item:last-child { border-bottom: none; }
+    .tracking-timeline .tl-item .tl-icon { width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.8rem; flex-shrink: 0; }
+    .tracking-timeline .tl-item .tl-icon.done { background: rgba(34,197,94,0.1); color: var(--color-success); }
+    .tracking-timeline .tl-item .tl-icon.pending { background: rgba(245,158,11,0.1); color: var(--color-warning); }
+    .tracking-timeline .tl-item .tl-icon.future { background: rgba(255,255,255,0.04); color: #64748b; }
+    .tracking-timeline .tl-item .tl-info .tl-title { font-weight: 600; font-size: 0.9rem; color: #e2e8f0; }
+    .tracking-timeline .tl-item .tl-info .tl-time { font-size: 0.75rem; color: #94a3b8; }
+    .tracking-timeline .tl-item .tl-info .tl-desc { font-size: 0.8rem; color: #94a3b8; }
+    .reviews { background: var(--color-deep); padding: 50px 0; }
+    .review-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px,1fr)); gap: 20px; margin-top: 20px; }
+    .review-item { background: var(--color-surface); padding: 20px; border-radius: var(--radius-md); border: 1px solid rgba(255,255,255,0.04); }
+    .review-item .stars { color: var(--color-gold); letter-spacing: 2px; }
+    .review-item .review-text { margin: 8px 0; font-size: 0.95rem; color: #e2e8f0; }
+    .review-item .review-meta { font-size: 0.8rem; color: #94a3b8; }
+    .review-item .review-meta strong { color: #fff; }
+    .review-item .avatar { width: 48px; height: 48px; border-radius: 50%; background: rgba(255,255,255,0.04); display: flex; align-items: center; justify-content: center; font-weight: 700; color: var(--color-gold); font-size: 1.2rem; margin-bottom: 8px; border: 1px solid rgba(255,255,255,0.04); }
+    .review-item .review-image { width: 100%; height: 160px; object-fit: cover; border-radius: var(--radius-sm); margin-top: 10px; background: var(--color-deep); border: 1px solid rgba(255,255,255,0.04); }
+    .faq-section { background: var(--color-dark); padding: 50px 0; border-top: 1px solid rgba(255,255,255,0.03); }
+    .faq-grid { max-width: 800px; margin: 0 auto; }
+    .faq-item { border-bottom: 1px solid rgba(255,255,255,0.04); padding: 16px 0; }
+    .faq-item .q { font-weight: 700; color: #fff; display: flex; gap: 10px; font-size: 1rem; cursor: pointer; user-select: none; }
+    .faq-item .q i { color: var(--color-gold); margin-top: 2px; transition: transform 0.3s; }
+    .faq-item.active .q i { transform: rotate(180deg); }
+    .faq-item .a { color: #94a3b8; padding-left: 30px; font-size: 0.95rem; margin-top: 4px; max-height: 0; overflow: hidden; transition: max-height 0.3s ease; }
+    .faq-item.active .a { max-height: 300px; }
+    .order-form { background: var(--color-surface); padding: 28px 20px; border-radius: var(--radius-lg); border: 1px solid rgba(255,255,255,0.04); margin: 30px 0; }
+    .order-form h2 { font-size: 1.5rem; margin-bottom: 4px; color: #fff; }
+    .order-form .sub { color: #94a3b8; margin-bottom: 16px; font-size: 0.95rem; }
+    .order-form .risk-free { background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.04); border-radius: var(--radius-sm); padding: 12px 16px; text-align: center; font-weight: 500; color: #94a3b8; margin-bottom: 16px; font-size: 0.95rem; }
+    .order-form .risk-free i { color: var(--color-gold); margin-right: 8px; }
+    .order-form .zero-risk-highlight { background: rgba(239,68,68,0.04); border: 1px solid rgba(239,68,68,0.08); border-radius: var(--radius-sm); padding: 14px 18px; text-align: center; font-weight: 600; color: #fca5a5; margin-bottom: 16px; font-size: 1rem; }
+    .order-form .zero-risk-highlight i { color: #ef4444; margin-right: 8px; }
+    .order-form .zero-risk-highlight .sub { display: block; font-weight: 400; font-size: 0.85rem; color: #94a3b8; margin-top: 4px; }
+    .order-form .security-note { background: rgba(34,197,94,0.04); border: 1px solid rgba(34,197,94,0.06); border-radius: var(--radius-sm); padding: 12px 16px; text-align: center; font-weight: 500; color: #94a3b8; margin-bottom: 16px; font-size: 0.9rem; }
+    .order-form .security-note i { color: var(--color-success); margin-right: 8px; }
+    .corporate-badge { background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.04); border-radius: var(--radius-sm); padding: 8px 14px; text-align: center; font-size: 0.8rem; color: #94a3b8; margin-bottom: 16px; display: flex; align-items: center; justify-content: center; gap: 8px; }
+    .corporate-badge i { color: var(--color-gold); }
+    .corporate-badge .legal-note { display: block; font-size: 0.7rem; color: #94a3b8; margin-top: 4px; font-style: italic; }
+    .corporate-badge .legal-note i { color: var(--color-gold); margin-right: 4px; }
+    .order-form label { font-weight: 600; display: block; margin: 14px 0 4px; font-size: 0.95rem; color: #e2e8f0; }
+    .order-form input, .order-form select, .order-form textarea { width: 100%; padding: 14px 14px; border: 1px solid rgba(255,255,255,0.06); border-radius: var(--radius-sm); font-size: 1rem; font-family: inherit; background: var(--color-deep); color: #e2e8f0; outline: none; transition: var(--transition); min-height: 50px; }
+    .order-form input:focus, .order-form select:focus, .order-form textarea:focus { border-color: var(--color-accent); }
+    .order-form .btn-primary { margin-top: 18px; width: 100%; max-width: 100%; }
+    .order-form .privacy-note { margin-top: 10px; font-size: 0.8rem; color: #64748b; text-align: center; }
+    .order-form .quantity-selector { display: flex; align-items: center; gap: 12px; margin: 8px 0; flex-wrap: wrap; }
+    .order-form .quantity-selector label { margin: 0; font-weight: 600; font-size: 0.95rem; color: #e2e8f0; }
+    .order-form .quantity-selector select { padding: 12px 14px; border: 1px solid rgba(255,255,255,0.06); border-radius: var(--radius-sm); font-size: 1rem; font-family: inherit; background: var(--color-deep); color: #e2e8f0; min-width: 80px; outline: none; min-height: 48px; }
+    .success-message { background: rgba(34,197,94,0.04); border: 1px solid rgba(34,197,94,0.08); padding: 20px; border-radius: var(--radius-md); text-align: center; margin-top: 16px; display: none; }
+    .success-message i { font-size: 2.5rem; color: var(--color-success); margin-bottom: 8px; }
+    .success-message h3 { color: var(--color-success); font-size: 1.2rem; }
+    .success-message p { color: #94a3b8; font-size: 0.95rem; }
+    .success-message .order-number { font-size: 1.1rem; font-weight: 700; color: #fff; background: var(--color-deep); padding: 6px 16px; border-radius: var(--radius-sm); display: inline-block; margin: 8px 0; border: 1px solid rgba(34,197,94,0.08); }
+    .success-message .telegram-btn { display: inline-block; margin-top: 12px; background: #0088cc; color: #fff; padding: 14px 28px; border-radius: 40px; text-decoration: none; font-weight: 600; font-size: 0.95rem; transition: var(--transition); min-height: 50px; }
+    .success-message .telegram-btn:hover { background: #006699; }
+    .success-message .telegram-btn i { color: #fff; font-size: 1rem; margin-right: 8px; }
+    .footer { background: var(--color-deep); color: #94a3b8; padding: 40px 0 20px; border-top: 1px solid rgba(255,255,255,0.03); }
+    .footer .container { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px,1fr)); gap: 30px; }
+    .footer h4 { color: #fff; font-weight: 700; margin-bottom: 10px; font-size: 1rem; }
+    .footer a { color: #94a3b8; text-decoration: none; display: block; margin: 4px 0; font-size: 0.85rem; transition: var(--transition); }
+    .footer a:hover { color: #fff; }
+    .footer .legal { margin-top: 16px; border-top: 1px solid rgba(255,255,255,0.04); padding-top: 16px; text-align: center; font-size: 0.75rem; grid-column: 1 / -1; }
+    .footer .legal a { display: inline-block; margin: 0 12px; color: #94a3b8; text-decoration: underline; font-size: 0.75rem; padding: 4px 0; }
+    .footer .legal a:hover { color: #fff; }
+    .footer .copyright { text-align: center; border-top: 1px solid rgba(255,255,255,0.04); padding-top: 16px; margin-top: 20px; font-size: 0.75rem; grid-column: 1 / -1; color: #64748b; }
+    .legal-modal { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); backdrop-filter: blur(8px); z-index: 10000; display: none; align-items: center; justify-content: center; padding: 20px; }
+    .legal-modal.active { display: flex; }
+    .legal-modal .modal-content { background: var(--color-surface); border-radius: var(--radius-lg); max-width: 600px; width: 100%; max-height: 80vh; overflow-y: auto; padding: 30px; position: relative; border: 1px solid rgba(255,255,255,0.04); }
+    .legal-modal .modal-close { position: absolute; top: 14px; right: 18px; font-size: 2rem; cursor: pointer; color: #94a3b8; transition: var(--transition); }
+    .legal-modal .modal-close:hover { color: #fff; }
+    .legal-modal h3 { font-weight: 700; margin-bottom: 12px; color: #fff; }
+    .legal-modal p { margin-bottom: 10px; color: #94a3b8; font-size: 0.9rem; }
+    .float-buttons { position: fixed; bottom: 100px; right: 20px; z-index: 9998; display: flex; flex-direction: column; align-items: center; gap: 10px; }
+    .float-btn { width: 58px; height: 58px; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 8px 32px rgba(0,0,0,0.4); transition: var(--transition); text-decoration: none; position: relative; -webkit-tap-highlight-color: transparent; }
+    .float-btn:active { transform: scale(0.92); }
+    .float-btn:hover { transform: scale(1.08); }
+    .float-btn i { font-size: 1.6rem; color: #fff; }
+    .float-btn .pulse-ring { position: absolute; top: -4px; left: -4px; right: -4px; bottom: -4px; border-radius: 50%; border: 2px solid rgba(0,136,204,0.25); animation: pulse-ring 2s ease-out infinite; pointer-events: none; }
+    .float-btn.telegram { background: #0088cc; }
+    .float-btn .label { position: absolute; right: 72px; background: var(--color-surface); color: #fff; font-size: 0.6rem; font-weight: 600; padding: 4px 12px; border-radius: 20px; white-space: nowrap; box-shadow: 0 4px 16px rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.04); display: flex; align-items: center; gap: 4px; }
+    .float-btn .label .dot { display: inline-block; width: 7px; height: 7px; background: #22c55e; border-radius: 50%; animation: blink-dot 1.5s step-end infinite; flex-shrink: 0; }
+    @keyframes blink-dot { 0%,100% { opacity: 1; } 50% { opacity: 0.15; } }
+    @keyframes pulse-ring { 0% { transform: scale(1); opacity: 1; } 100% { transform: scale(1.3); opacity: 0; } }
+    .toast-container { position: fixed; bottom: 20px; left: 20px; z-index: 9997; max-width: 340px; width: 100%; pointer-events: none; }
+    .toast-item { background: var(--color-surface); color: #e2e8f0; border-radius: var(--radius-sm); padding: 12px 16px; margin-bottom: 10px; box-shadow: 0 8px 32px rgba(0,0,0,0.5); display: flex; align-items: center; gap: 12px; animation: slideUp 0.5s ease; border-left: 3px solid var(--color-gold); pointer-events: auto; font-size: 0.85rem; border: 1px solid rgba(255,255,255,0.04); }
+    .toast-item .toast-icon { color: var(--color-gold); font-size: 1.2rem; flex-shrink: 0; }
+    .toast-item .toast-text { flex: 1; }
+    .toast-item .toast-text strong { color: #fff; }
+    .toast-item .toast-time { font-size: 0.65rem; color: #94a3b8; margin-top: 2px; }
+    @keyframes slideUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+    .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); backdrop-filter: blur(8px); z-index: 9999; display: none; align-items: center; justify-content: center; padding: 20px; }
+    .modal-overlay.active { display: flex; }
+    .modal-content { background: var(--color-surface); border-radius: var(--radius-lg); max-width: 600px; width: 100%; max-height: 90vh; overflow-y: auto; padding: 20px; position: relative; border: 1px solid rgba(255,255,255,0.04); }
+    .modal-close { position: absolute; top: 12px; right: 16px; font-size: 2rem; cursor: pointer; color: #94a3b8; z-index: 10; transition: var(--transition); padding: 4px 8px; }
+    .modal-close:hover { color: #fff; }
+    .modal-gallery { position: relative; }
+    .modal-gallery .main-img { width: 100%; height: 350px; object-fit: contain; background: var(--color-deep); border-radius: var(--radius-sm); }
+    .modal-gallery .thumbnails { display: flex; gap: 8px; margin-top: 12px; justify-content: center; flex-wrap: wrap; }
+    .modal-gallery .thumbnails img { width: 70px; height: 70px; object-fit: cover; border-radius: var(--radius-sm); cursor: pointer; border: 2px solid transparent; transition: var(--transition); }
+    .modal-gallery .thumbnails img:hover { border-color: var(--color-gold); }
+    .modal-gallery .nav-btn { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(0,0,0,0.5); color: #fff; border: none; font-size: 1.8rem; padding: 8px 14px; border-radius: 50%; cursor: pointer; z-index: 5; transition: var(--transition); min-width: 44px; min-height: 44px; display: flex; align-items: center; justify-content: center; }
+    .modal-gallery .nav-btn:hover { background: rgba(0,0,0,0.7); }
+    .modal-gallery .nav-btn.prev { left: 10px; }
+    .modal-gallery .nav-btn.next { right: 10px; }
+    .modal-info { margin-top: 16px; }
+    .modal-info h3 { font-size: 1.2rem; color: #fff; }
+    .modal-info .price { font-weight: 700; color: var(--color-gold-light); font-size: 1.1rem; }
+    .modal-info .colors { display: flex; gap: 8px; margin-top: 6px; flex-wrap: wrap; }
+    .modal-info .colors .dot { width: 24px; height: 24px; border-radius: 50%; border: 1px solid rgba(255,255,255,0.1); }
+    .modal-info .gift { color: var(--color-success); font-weight: 500; }
+    .modal-info .btn-order-modal { margin-top: 12px; }
+    .modal-info .authenticity-modal { background: rgba(255,255,255,0.02); border-radius: var(--radius-sm); padding: 10px 14px; font-size: 0.8rem; color: #94a3b8; margin: 8px 0; display: flex; align-items: flex-start; gap: 8px; border: 1px solid rgba(255,255,255,0.04); }
+    .modal-info .authenticity-modal i { color: var(--color-gold); margin-top: 2px; }
+    @media (max-width: 768px) {
+      .hero { padding: 60px 0 50px; min-height: 90vh; }
+      .hero h1 { font-size: 2.2rem; }
+      .hero .subhead { font-size: 1rem; }
+      .hero .highlight-box { font-size: 0.75rem; padding: 8px 16px; margin-bottom: 16px; }
+      .hero .badges div { font-size: 0.75rem; padding: 6px 14px; }
+      .product-grid { grid-template-columns: 1fr 1fr; gap: 14px; }
+      .usdt-grid { grid-template-columns: 1fr; }
+      .step-grid { grid-template-columns: 1fr 1fr; gap: 14px; }
+      .section-title { font-size: 1.5rem; }
+      .section-sub { font-size: 0.95rem; }
+      .address-box { padding: 18px 14px; }
+      .address-box .map-container { height: 150px; }
+      .order-form { padding: 20px 12px; }
+      .order-form h2 { font-size: 1.3rem; }
+      .footer .container { grid-template-columns: 1fr 1fr; gap: 20px; }
+      .top-bar .container { flex-direction: column; align-items: center; gap: 4px; font-size: 0.7rem; }
+      .header-main .container { flex-direction: column; gap: 8px; align-items: center; }
+      .header-contact { gap: 12px; font-size: 0.8rem; justify-content: center; }
+      .logo { font-size: 1.2rem; text-align: center; }
+      .company-show .grid { grid-template-columns: 1fr 1fr; }
+      .toast-container { left: 10px; right: 10px; max-width: calc(100% - 20px); bottom: 80px; }
+      .float-buttons { bottom: 70px; right: 12px; }
+      .float-btn { width: 50px; height: 50px; }
+      .float-btn i { font-size: 1.4rem; }
+      .float-btn .label { display: flex !important; right: 60px; font-size: 0.5rem; padding: 3px 8px; white-space: nowrap; }
+      .float-btn .label .dot { width: 6px; height: 6px; }
+      .modal-gallery .main-img { height: 220px; }
+      .modal-content { padding: 14px; }
+      .warranty-card .body { grid-template-columns: 1fr; }
+      .price-calculator .row { flex-direction: column; }
+      .price-calculator select, .price-calculator input { width: 100%; min-width: unset; }
+      .review-item .review-image { height: 120px; }
+      .btn-primary { font-size: 0.95rem; padding: 14px 24px; min-height: 50px; }
+      .price-calculator .result-box .item .amount { font-size: 1.2rem; }
+      .trust-item { flex: 1 1 80px; }
+      .trust-item i { font-size: 1.3rem; }
+      .trust-item strong { font-size: 0.8rem; }
+      .trust-item small { font-size: 0.65rem; }
+      .product-card .zero-risk-badge { font-size: 0.5rem; padding: 3px 8px; top: 8px; left: 8px; }
+      .product-card .stock-urgency { font-size: 0.5rem; padding: 3px 8px; top: 8px; right: 8px; }
+      .cargo-inspection-note { font-size: 0.9rem; padding: 14px 16px; }
+      .cargo-inspection-note i { font-size: 1rem; }
+      .cargo-inspection-note .tutanak { font-size: 0.8rem; }
+    }
+    @media (max-width: 480px) {
+      .hero h1 { font-size: 1.8rem; }
+      .hero { padding: 40px 0 30px; min-height: 85vh; }
+      .product-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
+      .product-image { height: 150px; }
+      .product-body { padding: 12px 12px 16px; }
+      .product-body h4 { font-size: 0.85rem; }
+      .product-body .spec { font-size: 0.7rem; }
+      .price-row .our { font-size: 1rem; }
+      .price-row .market { font-size: 0.7rem; }
+      .step-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
+      .step-item { padding: 12px; }
+      .step-item .icon-circle { width: 56px; height: 56px; font-size: 1.4rem; }
+      .step-item h4 { font-size: 0.85rem; }
+      .step-item p { font-size: 0.75rem; }
+      .footer .container { grid-template-columns: 1fr; text-align: center; }
+      .company-show .grid { grid-template-columns: 1fr 1fr; }
+      .company-show .grid .item .img-wrap { height: 100px; }
+      .company-show .grid .item .label { font-size: 0.7rem; }
+      .order-form .quantity-selector { flex-direction: column; align-items: stretch; gap: 8px; }
+      .order-form .quantity-selector select { width: 100%; }
+      .veri-grid { grid-template-columns: 1fr; }
+      .wallet-icons { justify-content: center; }
+      .address-box .map-container { height: 120px; }
+      .address-box h3 { font-size: 1rem; }
+      .address-box p { font-size: 0.8rem; }
+      .modal-gallery .main-img { height: 180px; }
+      .modal-gallery .thumbnails img { width: 50px; height: 50px; }
+      .modal-gallery .nav-btn { font-size: 1.2rem; padding: 4px 10px; min-width: 36px; min-height: 36px; }
+      .modal-info h3 { font-size: 1rem; }
+      .float-btn .label { font-size: 0.45rem; padding: 2px 6px; right: 52px; }
+      .float-btn .label .dot { width: 5px; height: 5px; }
+    }
+    @media (max-width: 380px) {
+      .product-grid { grid-template-columns: 1fr; }
+      .step-grid { grid-template-columns: 1fr; }
+      .company-show .grid { grid-template-columns: 1fr; }
+      .hero h1 { font-size: 1.5rem; }
+      .hero .badges div { font-size: 0.65rem; padding: 4px 10px; }
+      .float-btn .label { display: none !important; }
+    }
+    .text-center { text-align: center; }
+    [translate="no"] {}
+  </style>
+</head>
+<body>
+
+  <!-- ===== 顶部栏 ===== -->
+  <div class="top-bar">
+    <div class="container">
+      <div>
+        <span><i class="fas fa-check-circle"></i> 香港总部直供 · 安卡拉仓库保障</span>
+        <span><i class="fas fa-map-marker-alt"></i> 土耳其本地服务中心</span>
+      </div>
+      <div>
+        <a href="tel:+905336664942"><i class="fas fa-phone"></i> +90 533 666 49 42</a>
+        <a href="https://t.me/HKTech_Turkey" target="_blank"><i class="fab fa-telegram"></i> Telegram</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== 头部 ===== -->
+  <header class="header-main">
+    <div class="container">
+      <div class="logo">HK Tech<span>.</span><small>香港 · 土耳其</small></div>
+      <div class="header-contact">
+        <a href="#about"><i class="fas fa-building"></i> 关于我们</a>
+        <a href="#products"><i class="fas fa-list"></i> 热门产品</a>
+        <a href="#order"><i class="fas fa-shopping-cart"></i> 免费申请</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ===== 英雄区 ===== -->
+  <section class="hero">
+    <div class="container">
+      <div class="highlight-box"><i class="fas fa-check-circle"></i> 先验货，满意再付款 · 货到付款</div>
+      <h1>香港供应链 <br /><span>便宜35%</span></h1>
+      <p class="subhead">📦 我们先送到您家门口，您验货，满意后用 <strong>USDT</strong> 付款！</p>
+      <div class="badges">
+        <div><i class="fas fa-shield-alt"></i> 1年全球科技保修</div>
+        <div><i class="fas fa-truck"></i> 免费送货上门</div>
+        <div><i class="fas fa-check-circle"></i> 安卡拉仓库发货 · 100% 正品</div>
+      </div>
+      <div class="cta-group">
+        <a href="#order" class="btn-primary"><i class="fas fa-hand-holding-heart"></i> 免费下单 – 0 首付</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 信任栏 ===== -->
+  <section class="trust-bar">
+    <div class="container">
+      <div class="trust-item"><i class="fas fa-tags"></i><strong>节省35%</strong><small>比市场更便宜</small></div>
+      <div class="trust-item"><i class="fas fa-box-open"></i><strong>先验货</strong><small>满意再付款</small></div>
+      <div class="trust-item"><i class="fas fa-undo-alt"></i><strong>14天免费退货</strong><small>安卡拉中心</small></div>
+      <div class="trust-item"><i class="fas fa-lock"></i><strong>USDT支付</strong><small>快捷安全</small></div>
+    </div>
+  </section>
+
+  <!-- ===== 为什么我们先发货？ ===== -->
+  <section class="why-trust" id="about">
+    <div class="container">
+      <div class="content">
+        <h2><i class="fas fa-question-circle"></i> 为什么我们先发货，再收款？</h2>
+        <p class="sub-en">香港供应链 · 安卡拉本地仓库</p>
+        <p>我们不是传统的零售商。我们是一家总部位于香港的供应公司，在土耳其建立了本地仓库。</p>
+        <p>通过消除中间商、店铺租金和传统渠道成本，我们将节省下来的费用直接让利给客户。</p>
+        <div class="highlight-quote"><i class="fas fa-check-circle"></i> 正品不怕客户检验。</div>
+        <div class="supply-chain-explainer">
+          <i class="fas fa-info-circle"></i> <strong>为什么便宜35%？</strong> 我们以批发供应链利润运营，而不是零售暴利。我们所有的设备都是原装包装、注册并带发票的。在土耳其可以通过官方渠道注册，或具有稳定的网络兼容性。您可以通过 e-Devlet 自行查询验证。
+        </div>
+        <div class="bold-statement">
+          <i class="fas fa-flag"></i> 传统购物中，您先付钱，然后等待产品，并且自己承担海关风险。而我们完全承担风险：因为我们供应链中的每一台设备都经过正品验证、所有测试合格，并且保证在土耳其可以正常使用。您先验货，满意再付款。这是我们对产品信心的最具体证明。
+        </div>
+        <div class="cost-comparison">
+          <h4 style="font-weight:700; margin-bottom:8px; font-size:1rem; color:#fff;"><i class="fas fa-chart-line"></i> 价差从何而来？</h4>
+          <div class="row"><span class="label">传统渠道：</span><span class="value">工厂 → 香港 → 土耳其分销商 → 经销商 → 商店</span></div>
+          <div class="row"><span class="label">利润率：</span><span class="value" style="color:#f87171;">额外成本 35-40%</span></div>
+          <div class="row"><span class="label">HK Tech 模式：</span><span class="value" style="color:var(--color-gold-light);">深圳/香港 → 安卡拉仓库 → 您家门口</span></div>
+          <div class="highlight-row"><i class="fas fa-check-circle"></i> 我们消除了4个中间环节，将节省的费用让利给您！</div>
+        </div>
+        <div style="margin-top:16px; background:rgba(255,255,255,0.02); padding:8px 16px; border-radius:var(--radius-sm); display:inline-block; font-size:0.85rem; color:#94a3b8; border:1px solid rgba(255,255,255,0.04);">
+          <i class="fas fa-building"></i> 税号: 342 098 5412 · HK Tech 土耳其
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 公司展示 ===== -->
+  <section class="company-show">
+    <div class="container">
+      <h2 class="section-title">环球科技贸易集团</h2>
+      <p class="section-sub">香港国际贸易中心 · 深圳供应链 · 安卡拉本地服务中心</p>
+      <div class="grid">
+        <div class="item"><div class="img-wrap"><img src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=400&h=300&fit=crop" alt="香港办公室" loading="lazy" /><div class="overlay">香港中心 · 国际商务中心</div></div><div class="label">香港总部办公室</div></div>
+        <div class="item"><div class="img-wrap"><img src="https://images.unsplash.com/photo-1589939705384-5185137a7f0f?w=400&h=300&fit=crop" alt="公司注册证书" loading="lazy" /><div class="overlay">香港公司注册 · 合规合法</div></div><div class="label">香港公司注册证书</div></div>
+        <div class="item"><div class="img-wrap"><img src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=400&h=300&fit=crop" alt="安卡拉仓库" loading="lazy" /><div class="overlay">安卡拉仓库 · Ostim OSB · 备件和技术支持</div></div><div class="label">安卡拉仓库 · 备件和技术支持</div></div>
+        <div class="item"><div class="img-wrap"><img src="https://images.unsplash.com/photo-1717386255767-52643970d483?w=400&h=300&fit=crop" alt="深圳供应" loading="lazy" /><div class="overlay">深圳供应 · 工厂直采</div></div><div class="label">深圳供应 · 工厂直采</div></div>
+        <div class="item"><div class="img-wrap"><img src="https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?w=400&h=300&fit=crop" alt="包装过程" loading="lazy" /><div class="overlay">专业包装 · 防震保护</div></div><div class="label">专业包装 · 防震保护</div></div>
+        <div class="item"><div class="img-wrap"><img src="https://images.unsplash.com/photo-1521737711867-e3b97375f902?w=400&h=300&fit=crop" alt="本地团队" loading="lazy" /><div class="overlay">土耳其本地 · 专业服务团队</div></div><div class="label">土耳其本地服务团队</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 仓库地址 + 地图 ===== -->
+  <div class="container">
+    <div class="address-box">
+      <h3><i class="fas fa-warehouse"></i> 土耳其本地服务中心</h3>
+      <p><strong>📍 地址:</strong> Ostim OSB Mahallesi, 123. Cadde No:45, Yenimahalle, Ankara, 土耳其</p>
+      <p><strong>🏢 香港总部:</strong> Room 1202, Harbour Centre, 25 Harbour Road, Wan Chai, 香港</p>
+      <p><strong>📞 客服:</strong> +90 533 666 49 42</p>
+      <p><strong>📱 Telegram:</strong> <a href="https://t.me/HKTech_Turkey" target="_blank">@HKTech_Turkey</a></p>
+      <p><strong>📧 邮箱:</strong> support@hktech-tr.com</p>
+      <p><strong>🕐 营业时间:</strong> 周一至周六 09:00 - 18:00（可预约仓库自提）</p>
+      <div class="pickup-info">
+        <i class="fas fa-store-alt"></i>
+        <span>如果您想参观我们的仓库并亲自提货，可以提前预约，前往我们在 Ostim 的分部。</span>
+      </div>
+      <div class="map-container"><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d24474.258460180126!2d32.732231!3d39.987458!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14d34acd3cdbd7a9%3A0x2f6e2a3c4d5e6f7!2sOstim%20OSB%2C%20Yenimahalle%2C%20Ankara!5e0!3m2!1str!2str!4v1700000000000" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe></div>
+      <div class="highlight"><i class="fas fa-info-circle"></i> 所有产品均从安卡拉仓库直接发货。如需到仓库自提，可预约。我们提供备件和技术支持服务。</div>
+    </div>
+  </div>
+
+  <!-- ===== 海关 & BTK ===== -->
+  <div class="container">
+    <div class="info-box"><i class="fas fa-shield-alt"></i> <strong>安卡拉仓库发货 – 无额外税费！</strong> 我们所有产品均通过合法进口程序进入安卡拉仓库。送货上门的产品无需支付额外关税。</div>
+    <div class="info-box"><i class="fas fa-check-circle"></i> <strong>BTK / IMEI 注册保障：</strong> 我们所有的设备都是原装包装、注册并带发票的。在土耳其可以通过官方渠道注册，或具有稳定的网络兼容性。您可以通过 e-Devlet 自行查询验证。</div>
+  </div>
+
+  <!-- ===== 产品 ===== -->
+  <section class="products" id="products">
+    <div class="container">
+      <h2 class="section-title">🛍️ 热门产品</h2>
+      <p class="section-sub">100% 正品 · 比土耳其市场便宜35% · 免费送货上门 · 先验后付</p>
+      <div class="category-title">📱 智能手机</div>
+      <div class="product-grid" id="phone-grid"></div>
+      <div class="category-title">⌚ 智能手表</div>
+      <div class="product-grid" id="watch-grid"></div>
+      <div class="category-title">🎧 无线耳机</div>
+      <div class="product-grid" id="earphone-grid"></div>
+      <div style="text-align:center; margin-top:30px;"><a href="#order" class="btn-primary"><i class="fas fa-arrow-right"></i> 免费申请</a></div>
+    </div>
+  </section>
+
+  <!-- ===== 价格计算器 ===== -->
+  <div class="container">
+    <div class="price-calculator" id="calculator">
+      <h3 style="font-weight:700; margin-bottom:4px; color:#fff;"><i class="fas fa-calculator"></i> 实时价格计算器</h3>
+      <p style="font-size:0.85rem; color:#94a3b8; margin-bottom:12px;">选择型号和存储选项，立即查看 USDT 和 TRY 对应价格。</p>
+      <div class="row">
+        <select id="calcModel">
+          <option value="340">Xiaomi Redmi Note 14 Pro 8+256GB</option>
+          <option value="325">Xiaomi Redmi Note 14 Pro 12+512GB</option>
+          <option value="745">Xiaomi 14T 12+256GB</option>
+          <option value="755">Xiaomi 14T Pro 12+256GB</option>
+          <option value="375">Huawei Nova 13 12+256GB</option>
+          <option value="610">Huawei Nova 13 Pro 12+512GB</option>
+          <option value="525">Samsung Galaxy A55 8+128GB</option>
+          <option value="550">Samsung Galaxy A55 8+256GB</option>
+          <option value="1395">Apple iPhone 16 128GB</option>
+        </select>
+        <input type="number" id="calcUsdtRate" value="34" step="0.1" min="20" max="50" style="max-width:120px;" />
+        <span style="font-weight:600; font-size:0.9rem; color:#94a3b8;">TRY / USDT</span>
+      </div>
+      <div class="result-box">
+        <div class="item"><span class="label">USDT 价格</span><div class="amount" id="calcUsdt">340 USDT</div></div>
+        <div class="item"><span class="label">TRY 等值</span><div class="amount" id="calcTry">11.560 ₺</div></div>
+        <div class="item"><span class="label">市场对比</span><div class="amount" style="color:var(--color-gold-light); font-size:1rem;">便宜35%</div></div>
+      </div>
+      <div class="rate-note"><i class="fas fa-info-circle"></i> 汇率以 Binance TR 实时参考汇率为准，在订单确认时锁定。可能存在实时波动。</div>
+      <div class="rate-disclaimer"><i class="fas fa-sync-alt fa-fw"></i> 当前汇率根据支付时的 Binance TR / Paribu 实时 USDT 卖出价自动更新。</div>
+    </div>
+  </div>
+
+  <!-- ===== 价格对比 ===== -->
+  <div class="container">
+    <div class="product-compare">
+      <h3 style="margin-bottom:8px; color:#fff;">📊 传统购物 vs 香港直供</h3>
+      <table>
+        <thead><tr><th>对比项</th><th>传统商店 / 授权经销商</th><th><strong>HK Tech 香港直供</strong></th></tr></thead>
+        <tbody>
+          <tr><td>价格</td><td>100% 市场价格</td><td><strong>仅需 65%（便宜35%）</strong></td></tr>
+          <tr><td>来源</td><td>本地分销商</td><td><strong>香港总部 · 深圳供应</strong></td></tr>
+          <tr><td>付款方式</td><td>现金 / 信用卡</td><td><strong>USDT（加密货币，秒到账）</strong></td></tr>
+          <tr><td>购物风险</td><td>先付钱再等待</td><td><strong>先验货，满意再付款</strong></td></tr>
+          <tr><td>保修和退货</td><td>12-24个月</td><td><strong>12个月保修 · 14天免费退货（安卡拉中心）</strong></td></tr>
+        </tbody>
+      </table>
+      <div class="price-explainer"><i class="fas fa-lightbulb"></i> <strong>为什么便宜35%？</strong> 我们以批发供应链利润运营，而不是零售暴利。每部手机都是原装包装、注册并带发票的。土耳其保修或全球原装盒装，首次由您亲自开启原装封条。</div>
+      <div class="trust-footer"><i class="fas fa-check-circle"></i> 我们的低价不是因为质量差，而是因为我们消除了中间商。我们所有的产品都是正品，首次由您亲自开启，并享有12个月全球科技保修。IMEI 记录可通过 e-Devlet 查询。</div>
+      <p style="margin-top:10px; font-weight:600; color:var(--color-gold-light); font-size:0.95rem;"><i class="fas fa-star"></i> 同样的正品，便宜35%，而且先送到您家门口试用再付款 – 零风险购物！</p>
+    </div>
+  </div>
+
+  <!-- ===== 如何运作？ ===== -->
+  <section class="steps" id="how">
+    <div class="container">
+      <h2 class="section-title">📋 如何运作？</h2>
+      <p class="section-sub">零风险，零首付。四步拥有您的全新设备</p>
+      <div class="step-grid">
+        <div class="step-item"><div class="icon-circle"><i class="fas fa-edit"></i></div><h4>1. 免费申请</h4><p>填写配送信息，无需支付任何首付</p></div>
+        <div class="step-item"><div class="icon-circle"><i class="fas fa-shipping-fast"></i></div><h4>2. 免费送货</h4><p>从安卡拉仓库 1-3 个工作日内免费送货上门</p></div>
+        <div class="step-item"><div class="icon-circle"><i class="fas fa-search"></i></div><h4>3. 检查和测试</h4><p>打开包装，检查 IMEI 码，测试所有功能。验证正品。</p></div>
+        <div class="step-item"><div class="icon-circle"><i class="fas fa-coins"></i></div><h4>4. 满意后用 USDT 付款</h4><p>如果不满意，可在送货时直接拒收。14天内免费退货，所有运费由我们承担。</p></div>
+      </div>
+      <div class="cargo-inspection-note">
+        <i class="fas fa-box-open"></i>
+        <span>得益于我们的<span class="highlight">专属快递协议</span>，您可以在快递员监督下打开外包装检查，验证 IMEI 和原装封条。</span>
+        <span class="tutanak"><i class="fas fa-file-signature"></i> 如果快递包装有任何损坏，您有权让快递员出具记录并拒收产品。</span>
+      </div>
+      <div style="text-align:center; margin-top:20px; background:rgba(255,255,255,0.02); padding:12px; border-radius:var(--radius-sm); font-weight:400; color:#94a3b8; border:1px solid rgba(255,255,255,0.04);"><i class="fas fa-clock" style="color:var(--color-gold);"></i> 我们的专属快递团队会在您身边等待您开箱检查。</div>
+      <div class="return-promise"><i class="fas fa-undo-alt"></i> 14天免费退货 – 如果不满意，将产品寄回安卡拉服务中心，所有费用由我们承担。<span class="sub">送货时您可以打开包装检查外观和配件，如有任何问题可以拒收。</span><span class="note">快递员在场时您有权检查。</span></div>
+    </div>
+  </section>
+
+  <!-- ===== 视频 ===== -->
+  <section class="video-section" id="video">
+    <div class="container">
+      <div class="video-container">
+        <video controls poster="https://images.unsplash.com/photo-1598327105666-5b89351aff97?w=800&h=450&fit=crop" preload="metadata">
+          <source src="https://raw.githubusercontent.com/Uretry/linkresource/refs/heads/main/%E6%89%8B%E6%9C%BA%E9%AA%8C%E8%B4%A7%E8%A7%86%E9%A2%91.mp4" type="video/mp4" />
+          <p>您的浏览器不支持视频播放。</p>
+        </video>
+        <p style="color:#94a3b8; text-align:center; font-size:0.8rem; padding:8px;">👆 展示验货流程的演示视频</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 正品验证 + IMEI ===== -->
+  <section class="verification" id="verify">
+    <div class="container">
+      <h2 class="section-title">🔍 如何验证产品真伪？</h2>
+      <p class="section-sub">通过以下四个步骤检查您收到的产品</p>
+      <div class="veri-grid">
+        <div class="veri-item"><i class="fas fa-fingerprint"></i><h4>1. 拨打 *#06#</h4><p>每部手机都有唯一的 IMEI 号码。开机后拨打 <strong>*#06#</strong> 并与包装盒对比。</p></div>
+        <div class="veri-item"><i class="fas fa-globe"></i><h4>2. 官方网站查询</h4><p>前往制造商官方网站，输入 IMEI 号码，检查保修状态和销售区域。</p></div>
+        <div class="veri-item"><i class="fas fa-calendar-check"></i><h4>3. 首次激活日期</h4><p>首次开机需要手动激活。激活日期显示设备之前未被使用过。</p></div>
+        <div class="veri-item"><i class="fas fa-boxes"></i><h4>4. 序列号核对</h4><p>原装包装是密封的。所有配件齐全。屏幕上有出厂保护膜。包装盒、设备和保修卡上的序列号应一致。</p></div>
+      </div>
+      <div class="imei-simulator">
+        <h4><i class="fas fa-search"></i> IMEI 在线验证</h4>
+        <p style="font-size:0.85rem; color:#94a3b8; margin-bottom:10px;">输入您设备的15位 IMEI 号码进行验证</p>
+        <div class="input-group">
+          <input type="text" id="imeiInput" placeholder="例如: 123456789012345" maxlength="15" />
+          <button id="imeiCheckBtn"><i class="fas fa-shield-alt"></i> 验证</button>
+        </div>
+        <div id="imeiResult" class="result"></div>
+        <p style="font-size:0.7rem; color:#64748b; margin-top:8px;">* HK Tech 安卡拉仓库保障 · 可通过 e-Devlet 查询</p>
+      </div>
+      <div style="background:rgba(255,255,255,0.02); border-radius:var(--radius-md); padding:16px; margin-top:24px; text-align:center; border:1px solid rgba(255,255,255,0.04);"><i class="fas fa-check-circle" style="color:var(--color-gold); font-size:1.4rem;"></i><p style="font-weight:500; margin-top:4px; font-size:0.95rem; color:#94a3b8;">先验货，后付款 – 不满意可退货，所有运费由我们承担，零风险！</p></div>
+    </div>
+  </section>
+
+  <!-- ===== USDT 指南 ===== -->
+  <section class="usdt-guide">
+    <div class="container">
+      <h2 class="section-title">💳 USDT 支付指南</h2>
+      <p class="section-sub">为什么我们接受 USDT？如何安全付款？</p>
+      <div class="usdt-grid">
+        <div class="card">
+          <h4><i class="fas fa-check-circle" style="color:var(--color-success);"></i> 为什么选择 USDT？</h4>
+          <ul>
+            <li><i class="fas fa-check"></i> <strong>快速</strong> – 几分钟内完成</li>
+            <li><i class="fas fa-check"></i> <strong>安全</strong> – 无需分享银行卡信息</li>
+            <li><i class="fas fa-check"></i> <strong>国际化</strong> – 香港供应链使用 USDT 结算</li>
+          </ul>
+          <div class="usdt-advantage"><i class="fas fa-coins"></i> 您可以通过土耳其主流交易所（Binance TR、OKX TR 等）在几秒钟内轻松完成 USDT 转账。</div>
+          <div class="usdt-security"><i class="fas fa-shield-alt"></i><div><strong>支付安全：</strong> 下单后，我们会通过官方 Telegram 账号向您发送一个唯一的 TRC20 钱包地址。请只向我们的官方 Telegram 渠道发送的地址付款。我们绝不要求预付款。</div></div>
+          <div class="usdt-helper"><i class="fas fa-question-circle"></i><div><strong>不知道如何用 USDT 付款？</strong> 别担心！您验货后，我们的本地支持团队会通过视频或文字在2分钟内逐步指导您完成安全支付。您可以通过 Telegram 获得即时帮助。</div></div>
+          <div class="usdt-live-help">
+            <i class="fas fa-headset"></i>
+            <span><strong>没有加密货币经验？</strong> 完全没问题！送货时我们的实时支持团队会逐步指导您。</span>
+          </div>
+        </div>
+        <div class="card">
+          <h4><i class="fas fa-wallet"></i> 支持的钱包</h4>
+          <p style="color:#94a3b8;">您可以使用以下热门钱包：</p>
+          <div class="wallet-icons"><span>Binance</span><span>OKX</span><span>Bybit</span><span>Trust Wallet</span><span>imToken</span><span>Phantom</span></div>
+          <p style="margin-top:12px; font-size:0.9rem; color:#94a3b8;">验货后从支持团队获取钱包地址。</p>
+          <div class="usdt-real-time"><i class="fas fa-clock"></i> 以付款时的实时汇率为准。</div>
+          <div class="rate-lock-note"><i class="fas fa-lock"></i> 提交申请后，我们会通过 Telegram 与您一对一分享实时 USDT/TRY 汇率。我们保证透明和公平。</div>
+          <div class="rate-guarantee"><i class="fas fa-check-circle"></i> 汇率在订单确认时以 Binance TR 卖出价锁定。绝不加收汇率差价。</div>
+          <p style="margin-top:8px; background:rgba(255,255,255,0.02); padding:8px; border-radius:var(--radius-sm); font-size:0.85rem; color:#94a3b8; border:1px solid rgba(255,255,255,0.04);"><i class="fas fa-info-circle"></i> <strong>参考汇率：</strong> 1 USDT ≈ 34 TRY（实时波动）</p>
+          <div class="usdt-calculator">
+            <label><i class="fas fa-calculator"></i> TRY → USDT 计算器</label>
+            <div class="input-group">
+              <input type="number" id="tryInput" placeholder="输入 TRY 金额" min="0" step="1" />
+              <span>≈ <span id="usdtResult">0</span> USDT</span>
+            </div>
+            <div class="result-calc" id="calcNote">* 参考汇率 1 USDT = 34 TRY，按实际付款时汇率计算</div>
+          </div>
+          <p class="usdt-disclaimer"><i class="fas fa-exclamation-circle"></i> 汇率波动属正常市场情况。最终金额以付款时的实时汇率为准。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 保修 ===== -->
+  <div class="container">
+    <div class="warranty-table">
+      <h3 style="margin-bottom:8px; font-size:1.2rem; color:#fff;">🛡️ 全球科技保修</h3>
+      <p style="font-size:0.85rem; color:#94a3b8; margin-bottom:12px;">国际保修服务 · 安卡拉中心支持</p>
+      <table>
+        <tr><th>保修期限</th><td>12个月（可加 20 USD 延长至 24个月）</td></tr>
+        <tr><th>保障范围</th><td>除人为损坏外的所有故障 – 免费维修或一对一更换</td></tr>
+        <tr><th>处理步骤</th><td>联系支持 → 获取 RMA 编号 → 寄往安卡拉仓库 → 3个工作日内检查 → 维修/更换 → 免费寄回</td></tr>
+        <tr><th>响应时间</th><td>寄送后 <strong>7个工作日内</strong> 完成</td></tr>
+        <tr><th>运费</th><td>保修期内 <strong>所有运费由我们承担</strong></td></tr>
+        <tr><th>退货政策</th><td><strong>14天免费退货</strong> – 安卡拉中心退货流程</td></tr>
+      </table>
+      <p style="margin-top:12px; background:rgba(255,255,255,0.02); padding:12px; border-radius:var(--radius-sm); font-size:0.9rem; color:#94a3b8; border:1px solid rgba(255,255,255,0.04);"><i class="fas fa-check-circle" style="color:var(--color-gold);"></i> 我们所有产品在安卡拉本地服务中心享有12个月免费保修。保修期内如遇任何问题，您只需将产品寄往安卡拉仓库 – 由我们免费维修或更换，所有运费由我们承担。</p>
+    </div>
+    <div class="warranty-card">
+      <div class="header"><span style="font-weight:700; font-size:1.1rem;">🛡️ 全球科技保修证书</span><span class="badge">12个月保修</span></div>
+      <div class="body" id="warrantyBody">
+        <div><span class="label">产品：</span> <span class="value">Xiaomi 14T Pro</span></div>
+        <div><span class="label">序列号：</span> <span class="value">HK-2026-08-XXXX</span></div>
+        <div><span class="label">保修开始：</span> <span class="value" id="warrantyStart">2026年8月</span></div>
+        <div><span class="label">保修结束：</span> <span class="value" id="warrantyEnd">2027年8月</span></div>
+        <div><span class="label">保修类型：</span> <span class="value">一对一更换</span></div>
+        <div><span class="label">保障范围：</span> <span class="value">免费退货运费</span></div>
+      </div>
+      <div class="footer"><i class="fas fa-check-circle"></i> 本证书表明您的产品享有 HK Tech 提供的官方保修。 | 税号: 342 098 5412</div>
+    </div>
+  </div>
+
+  <!-- ===== 物流追踪 ===== -->
+  <section class="tracking-section" id="tracking">
+    <div class="container">
+      <h2 class="section-title">📦 订单追踪</h2>
+      <p class="section-sub">通过订单号或手机号查询最新状态</p>
+      <div class="tracking-box">
+        <div class="input-group">
+          <input type="text" id="trackingInput" placeholder="TR-2026-XXXX 或 +90 533 666 49 42" />
+          <button id="trackingBtn"><i class="fas fa-search"></i> 查询</button>
+        </div>
+        <div class="tracking-result" id="trackingResult">
+          <div style="font-weight:600; margin-bottom:8px; color:#fff;">📋 订单状态</div>
+          <div class="status-item">
+            <div class="icon done"><i class="fas fa-check"></i></div>
+            <div class="info">
+              <div class="title">已接单</div>
+              <div class="time">2026-08-09 10:30</div>
+              <div class="desc">您的订单已成功创建。</div>
+            </div>
+          </div>
+          <div class="status-item">
+            <div class="icon done"><i class="fas fa-check"></i></div>
+            <div class="info">
+              <div class="title">已从安卡拉仓库发货</div>
+              <div class="time">2026-08-09 14:20</div>
+              <div class="desc">您的产品已从安卡拉仓库交付快递。</div>
+            </div>
+          </div>
+          <div class="status-item">
+            <div class="icon pending"><i class="fas fa-clock"></i></div>
+            <div class="info">
+              <div class="title">已交付快递 – 派送中</div>
+              <div class="time">2026-08-10 08:15</div>
+              <div class="desc">快递员正在派送途中。</div>
+            </div>
+          </div>
+          <div class="status-item">
+            <div class="icon future"><i class="fas fa-circle"></i></div>
+            <div class="info">
+              <div class="title">已送达 – 等待确认</div>
+              <div class="time">即将</div>
+              <div class="desc">产品送达后等待您的确认。</div>
+            </div>
+          </div>
+          <div style="margin-top:12px; padding-top:12px; border-top:1px solid rgba(255,255,255,0.04); font-size:0.8rem; color:#94a3b8; text-align:center;">
+            <i class="fas fa-info-circle"></i> 物流状态实时更新
+          </div>
+        </div>
+        <div class="tracking-timeline" id="trackingTimeline">
+          <div style="font-weight:600; margin-bottom:10px; color:#fff;">🚚 物流时间线</div>
+          <div class="tl-item"><div class="tl-icon done"><i class="fas fa-check"></i></div><div class="tl-info"><div class="tl-title">订单已确认</div><div class="tl-time">10:30 - 2026-08-09</div><div class="tl-desc">您的订单已成功确认。</div></div></div>
+          <div class="tl-item"><div class="tl-icon done"><i class="fas fa-box"></i></div><div class="tl-info"><div class="tl-title">已从仓库发货</div><div class="tl-time">14:20 - 2026-08-09</div><div class="tl-desc">已从安卡拉仓库发货。</div></div></div>
+          <div class="tl-item"><div class="tl-icon pending"><i class="fas fa-truck"></i></div><div class="tl-info"><div class="tl-title">运输中</div><div class="tl-time">08:15 - 2026-08-10</div><div class="tl-desc">快递员正在派送途中。</div></div></div>
+          <div class="tl-item"><div class="tl-icon future"><i class="fas fa-clock"></i></div><div class="tl-info"><div class="tl-title">送达</div><div class="tl-time">等待中</div><div class="tl-desc">产品送达后等待您的确认。</div></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 客户评价 ===== -->
+  <section class="reviews" id="reviews">
+    <div class="container">
+      <h2 class="section-title">⭐ 客户评价和收货照片</h2>
+      <p class="section-sub">来自土耳其各地真实买家的体验</p>
+      <div class="review-grid" id="reviewGrid"></div>
+    </div>
+  </section>
+
+  <!-- ===== FAQ ===== -->
+  <section class="faq-section" id="faq">
+    <div class="container">
+      <h2 class="section-title">❓ 常见问题</h2>
+      <p class="section-sub">您关心的问题答案都在这里</p>
+      <div class="faq-grid">
+        <div class="faq-item"><div class="q"><i class="fas fa-chevron-down"></i> 为什么不用信用卡？</div><div class="a">由于我们是香港总部，我们的国际供应链使用 USDT 结算。这样我们可以节省银行手续费，将价格优势直接让利给客户。</div></div>
+        <div class="faq-item"><div class="q"><i class="fas fa-chevron-down"></i> 如果我不喜欢产品怎么办？</div><div class="a">您享有14天无理由退货权。将产品寄往安卡拉服务中心，所有运费由我们承担。</div></div>
+        <div class="faq-item"><div class="q"><i class="fas fa-chevron-down"></i> 产品是正品吗？可以通过 e-Devlet 查询吗？</div><div class="a">绝对是。我们所有产品都是100%正品，原装包装、注册并带发票。在土耳其可以通过官方渠道注册，或具有稳定的网络兼容性。您可以通过 e-Devlet 自行查询验证。</div></div>
+        <div class="faq-item"><div class="q"><i class="fas fa-chevron-down"></i> 如何用 USDT 付款？</div><div class="a">验货后，从我们的官方 Telegram 账号获取您的专属 TRC20 钱包地址。您可以通过 Binance TR、OKX TR 等平台轻松转账。如需帮助，我们的团队会指导您。</div></div>
+        <div class="faq-item"><div class="q"><i class="fas fa-chevron-down"></i> 快递需要多久？</div><div class="a">订单确认后，从安卡拉仓库 1-3 个工作日内免费送达。</div></div>
+        <div class="faq-item"><div class="q"><i class="fas fa-chevron-down"></i> 汇率如何计算？</div><div class="a">以付款时的实时 USDT/TRY 汇率为准。申请后我们会通过 Telegram 一对一分享实时汇率。汇率在 Binance TR 实时参考汇率基础上自动锁定，在订单确认时固定。</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 订单表单 ===== -->
+  <div class="container" id="order">
+    <div class="order-form">
+      <h2 style="margin-bottom:2px;">📝 免费下单申请</h2>
+      <p class="sub">填写您的信息，我们会尽快与您联系。<strong>0 首付 · 免费送货 · 满意再付款</strong></p>
+
+      <div class="corporate-badge">
+        <i class="fas fa-building"></i>
+        <span>合法企业资质 · 带发票销售 · HK Tech 土耳其（税号: 342 098 5412）</span>
+        <span class="legal-note"><i class="fas fa-check-circle"></i> 税务登记证和商业登记信息均符合官方机构要求。</span>
+      </div>
+
+      <div class="zero-risk-highlight">
+        <i class="fas fa-shield-alt"></i> 快递员在门口等待，您打开设备，检查 IMEI，如果不满意可以不花一分钱退回。
+        <span class="sub">快递员在门口等待，您打开包装并检查 IMEI；如果不满意，可以立即拒收，不花一分钱。</span>
+      </div>
+
+      <div class="risk-free"><i class="fas fa-shield-alt"></i> 我们的保证：在您验货并满意之前，不需要支付一分钱。快递员在场时您有权检查。</div>
+
+      <div class="security-note"><i class="fas fa-lock"></i> 保障：我们采用货到付款模式。快递员在门口，您打开包装检查 IMEI，然后用 USDT 付款。我们从不要求预付款或隐藏费用。您的满意对我们来说最重要。</div>
+
+      <div style="background:rgba(34,197,94,0.04); border:1px solid rgba(34,197,94,0.06); border-radius:var(--radius-sm); padding:8px 12px; margin-bottom:16px; text-align:center; font-weight:500; font-size:0.85rem; color:#94a3b8;"><i class="fas fa-check-circle" style="color:var(--color-success);"></i> 安卡拉仓库发货 – 无额外税费！原装包装、注册并带发票的产品。可通过 e-Devlet 查询。</div>
+
+      <form id="orderForm" name="orderForm">
+        <label for="name">您的姓名</label>
+        <input type="text" id="name" name="name" placeholder="姓名" required />
+
+        <label for="phone">您的手机号</label>
+        <input type="tel" id="phone" name="phone" placeholder="+90 533 666 49 42" required />
+
+        <label for="address">送货地址（省/区/街道/门牌号）</label>
+        <input type="text" id="address" name="address" placeholder="详细地址" required />
+
+        <label for="product">选择产品</label>
+        <select id="product" name="product">
+          <option value="">请选择产品</option>
+        </select>
+
+        <div class="quantity-selector">
+          <label for="quantity">数量：</label>
+          <select id="quantity" name="quantity">
+            <option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option>
+          </select>
+          <span style="font-size:0.85rem; color:#94a3b8;">（最多5件）</span>
+        </div>
+
+        <label for="note">备注（可选）</label>
+        <textarea id="note" name="note" rows="3" placeholder="如有特殊需求请注明..."></textarea>
+
+        <button type="submit" class="btn-primary" id="submitBtn"><i class="fas fa-paper-plane"></i> 免费申请 – 0 首付</button>
+        <p class="privacy-note"><i class="fas fa-lock"></i> 您的信息将被保密。订单确认后，我们会通过 <strong>Telegram</strong> 与您联系。</p>
+      </form>
+
+      <div id="successMessage" class="success-message">
+        <i class="fas fa-check-circle"></i>
+        <h3>✅ 您的申请已成功提交！</h3>
+        <p>感谢您的信任！您的订单号：</p>
+        <div class="order-number" id="orderNumber">#HK-00000</div>
+        <p>我们的支持团队会尽快通过 <strong>Telegram</strong> 与您联系。</p>
+        <p style="margin-top:6px; font-size:0.9rem; color:#94a3b8;"><i class="fas fa-spinner fa-pulse"></i> 正在跳转…</p>
+        <a href="https://t.me/HKTech_Turkey" target="_blank" class="telegram-btn"><i class="fab fa-telegram"></i> 前往 Telegram</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== 页脚 ===== -->
+  <footer class="footer">
+    <div class="container">
+      <div><h4>HK Tech</h4><p style="color:#94a3b8; font-size:0.85rem;">香港总部直供，安卡拉仓库保障土耳其安全购物。备件和技术支持。</p></div>
+      <div><h4>联系方式</h4><a href="tel:+905336664942"><i class="fas fa-phone"></i> +90 533 666 49 42</a><a href="https://t.me/HKTech_Turkey" target="_blank"><i class="fab fa-telegram"></i> Telegram</a><a href="mailto:support@hktech-tr.com"><i class="fas fa-envelope"></i> support@hktech-tr.com</a></div>
+      <div><h4>仓库地址</h4><p style="color:#94a3b8; line-height:1.6; font-size:0.85rem;">Ostim OSB Mah. 123. Cadde No:45<br />Yenimahalle, 安卡拉, 土耳其</p></div>
+      <div><h4>快速链接</h4><a href="#about">关于我们</a><a href="#products">热门产品</a><a href="#verify">正品验证</a><a href="#order">免费申请</a></div>
+      <div class="legal">
+        <a href="#" id="privacyLink">隐私政策（KVKK）</a> |
+        <a href="#" id="termsLink">服务条款</a> |
+        <a href="#" id="contractLink">远程销售合同</a> |
+        <a href="#" id="refundLink">取消和退货条款</a>
+      </div>
+      <div class="copyright">&copy; 2026 HK Tech。保留所有权利。 | 全球科技保修 | 汇率按实时市场确定 | 税号: 342 098 5412</div>
+    </div>
+  </footer>
+
+  <!-- ===== 浮动 Telegram 按钮 ===== -->
+  <div class="float-buttons">
+    <a href="https://t.me/HKTech_Turkey" target="_blank" class="float-btn telegram">
+      <i class="fab fa-telegram"></i>
+      <span class="label"><span class="dot"></span> 支持团队在线 – 立即留言</span>
+      <div class="pulse-ring"></div>
+    </a>
+  </div>
+
+  <!-- ===== TOAST ===== -->
+  <div class="toast-container" id="toastContainer"></div>
+
+  <!-- ===== 产品模态框 ===== -->
+  <div class="modal-overlay" id="productModal">
+    <div class="modal-content">
+      <span class="modal-close" id="modalClose">&times;</span>
+      <div class="modal-gallery">
+        <button class="nav-btn prev" id="modalPrev">&#10094;</button>
+        <button class="nav-btn next" id="modalNext">&#10095;</button>
+        <img class="main-img" id="modalMainImg" src="" alt="产品图片" />
+        <div class="thumbnails" id="modalThumbs"></div>
+      </div>
+      <div class="modal-info" id="modalInfo">
+        <h3 id="modalTitle"></h3>
+        <div class="price" id="modalPrice"></div>
+        <div class="colors" id="modalColors"></div>
+        <div class="gift" id="modalGift"></div>
+        <div class="authenticity-modal"><i class="fas fa-shield-alt"></i><span><strong>原装包装、注册并带发票。</strong> 土耳其保修或全球原装盒装。首次由您亲自开启原装封条。IMEI 记录可通过 e-Devlet 查询。</span></div>
+        <a href="#order" class="btn-primary btn-order-modal" style="max-width:100%;"><i class="fas fa-shopping-cart"></i> 免费申请</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== 法律模态框 ===== -->
+  <div class="legal-modal" id="legalModal">
+    <div class="modal-content">
+      <span class="modal-close" id="legalModalClose">&times;</span>
+      <h3 id="legalTitle">隐私政策</h3>
+      <div id="legalBody"></div>
+    </div>
+  </div>
+
+  <!-- ===== SCRIPTS ===== -->
+  <script>
+    // ============================================================
+    // 0. TELEGRAM 链接
+    // ============================================================
+    const TELEGRAM_LINK = 'https://t.me/HKTech_Turkey';
+
+    // ============================================================
+    // 1. 自动更新保修日期
+    // ============================================================
+    (function updateWarrantyDates() {
+      const now = new Date();
+      const monthNames = ['1月','2月','3月','4月','5月','6月','7月','8月','9月','10月','11月','12月'];
+      const sM = now.getMonth(), sY = now.getFullYear();
+      const eM = (sM + 12) % 12, eY = sY + Math.floor((sM + 12) / 12);
+      const startEl = document.getElementById('warrantyStart');
+      const endEl = document.getElementById('warrantyEnd');
+      if (startEl) startEl.textContent = monthNames[sM] + ' ' + sY;
+      if (endEl) endEl.textContent = monthNames[eM] + ' ' + eY;
+    })();
+
+    // ============================================================
+    // 2. 产品数据
+    // ============================================================
+    const productData = {
+      phones: [
+        { name: "Xiaomi 14T", spec: "12GB RAM + 256GB 存储", market: 1147, our: 745, discount: 35, img: "📱", stock: 4, colors: ["黑色","白色","绿色","钛色"], colorValues: ["#1a1a1a","#ffffff","#4a9e6b","#a8a8a8"], gift: "赠品：透明保护壳 + 屏幕保护膜", images: ["https://raw.githubusercontent.com/Uretry/linkresource/refs/heads/main/1Xiaomi%2014T%2012GB%20RAM%20%2B%20256GB%20%E5%AD%98%E5%82%A8.png", "https://raw.githubusercontent.com/Uretry/linkresource/refs/heads/main/1Xiaomi%2014T%2012GB%20RAM%20%2B%20256GB%20%E5%AD%98%E5%82%A82.png", "https://raw.githubusercontent.com/Uretry/linkresource/refs/heads/main/1Xiaomi%2014T%2012GB%20RAM%20%2B%20256GB%20%E5%AD%98%E5%82%A83.png"], capacity: "8+256GB / 12+256GB / 16+512GB" },
+        { name: "Xiaomi 14T Pro", spec: "12GB RAM + 256GB 存储", market: 1162, our: 755, discount: 35, img: "📱", stock: 2, colors: ["黑色","白色","绿色"], colorValues: ["#1a1a1a","#ffffff","#4a9e6b"], gift: "赠品：透明保护壳 + 屏幕保护膜", images: ["https://raw.githubusercontent.com/Uretry/linkresource/refs/heads/main/2%E4%BA%8C.Xiaomi%2014T%20Pro.png", "https://raw.githubusercontent.com/Uretry/linkresource/refs/heads/main/2%E4%BA%8C.Xiaomi%2014T%20Pro2.png", "https://raw.githubusercontent.com/Uretry/linkresource/refs/heads/main/2%E4%BA%8C.Xiaomi%2014T%20Pro3.png"], capacity: "12+256GB / 16+512GB / 16+1TB" },
+        { name: "Xiaomi Redmi Note 14 Pro", spec: "8GB RAM + 256GB 存储", market: 526, our: 340, discount: 35, img: "📱", stock: 5, colors: ["黑色","白色","蓝色"], colorValues: ["#1a1a1a","#ffffff","#4a90d9"], gift: "赠品：透明保护壳 + 屏幕保护膜", images: ["https://raw.githubusercontent.com/Uretry/linkresource/refs/heads/main/3%E4%B8%89.Xiaomi%20Redmi%20Note%2014%20Pro2.png"], capacity: "8+256GB / 12+512GB" },
+        { name: "Xiaomi Redmi Note 14 Pro", spec: "12GB RAM + 512GB 存储", market: 500, our: 325, discount: 35, img: "📱", stock: 3, colors: ["黑色","白色","蓝色"], colorValues: ["#1a1a1a","#ffffff","#4a90d9"], gift: "赠品：透明保护壳 + 屏幕保护膜", images: ["https://raw.githubusercontent.com/Uretry/linkresource/refs/heads/main/4%E5%9B%9BXiaomi%20Redmi%20Note%2014%20Pro%2012GB%20RAM%20%2B%20512GB%20%E5%AD%98%E5%82%A8.png", "https://raw.githubusercontent.com/Uretry/linkresource/refs/heads/main/4%E5%9B%9BXiaomi%20Redmi%20Note%2014%20Pro%2012GB%20RAM%20%2B%20512GB%20%E5%AD%98%E5%82%A82.png", "https://raw.githubusercontent.com/Uretry/linkresource/refs/heads/main/4%E5%9B%9BXiaomi%20Redmi%20Note%2014%20Pro%2012GB%20RAM%20%2B%20512GB%20%E5%AD%98%E5%82%A83.png"], capacity: "8+256GB / 12+512GB" },
+        { name: "Huawei Nova 13", spec: "12GB RAM + 256GB 存储", market: 579, our: 375, discount: 35, img: "📱", stock: 6, colors: ["黑色","白色","粉色"], colorValues: ["#1a1a1a","#ffffff","#f4a0b0"], gift: "赠品：透明保护壳 + 屏幕保护膜", images: ["https://raw.githubusercontent.com/Uretry/linkresource/refs/heads/main/5%E4%BA%94.Huawei%20Nova%2013%2012GB%20RAM%20%2B%20256GB%20%E5%AD%98%E5%82%A83.png"], capacity: "12+256GB / 12+512GB" },
+        { name: "Huawei Nova 13 Pro", spec: "12GB RAM + 512GB 存储", market: 941, our: 610, discount: 35, img: "📱", stock: 4, colors: ["黑色","白色","金色"], colorValues: ["#1a1a1a","#ffffff","#d4af37"], gift: "赠品：透明保护壳 + 屏幕保护膜", images: ["https://raw.githubusercontent.com/Uretry/linkresource/refs/heads/main/6%E5%85%ADHuawei%20Nova%2013%20Pro%2012GB%20RAM%20%2B%20512GB%20%E5%AD%98%E5%82%A83.png"], capacity: "12+256GB / 12+512GB" },
+        { name: "Samsung Galaxy A55 5G", spec: "8GB RAM + 128GB 存储", market: 806, our: 525, discount: 35, img: "📱", stock: 8, colors: ["黑色","灰色","紫色","黄色"], colorValues: ["#1a1a1a","#8c8c8c","#6a1b9a","#f5c842"], gift: "赠品：透明保护壳 + 屏幕保护膜", images: ["https://raw.githubusercontent.com/Uretry/linkresource/refs/heads/main/7%E4%B8%83.Samsung%20Galaxy%20A55%205G%208GB%20RAM%20%2B%20128GB%20%E5%AD%98%E5%82%A83.png"], capacity: "8+128GB / 8+256GB" },
+        { name: "Samsung Galaxy A55 5G", spec: "8GB RAM + 256GB 存储", market: 846, our: 550, discount: 35, img: "📱", stock: 5, colors: ["黑色","灰色","紫色","黄色"], colorValues: ["#1a1a1a","#8c8c8c","#6a1b9a","#f5c842"], gift: "赠品：透明保护壳 + 屏幕保护膜", images: ["https://raw.githubusercontent.com/Uretry/linkresource/refs/heads/main/8%E5%85%AB.Samsung%20Galaxy%20A55%205G%208GB%20RAM%20%2B%20128GB%20%E5%AD%98%E5%82%A82.png"], capacity: "8+128GB / 8+256GB" },
+        { name: "Apple iPhone 16", spec: "128GB / 256GB / 512GB", market: 72999, our: 47449, discount: 35, img: "📱", stock: 3, colors: ["黑色","白色","粉红色","湖水绿色","湛海蓝色"], colorValues: ["#1a1a1a","#f5f5f7","#f7c5d0","#a8d8c8","#3f5cc0"], gift: "赠品：透明保护壳 + 屏幕保护膜", images: ["https://raw.githubusercontent.com/Uretry/linkresource/refs/heads/main/9%E4%B9%9DApple%20iPhone%2016%20128GB%20256GB%20512GB7.png", "https://raw.githubusercontent.com/Uretry/linkresource/refs/heads/main/9%E4%B9%9DApple%20iPhone%2016%20128GB%20256GB%20512GB8.png", "https://raw.githubusercontent.com/Uretry/linkresource/refs/heads/main/9%E4%B9%9DApple%20iPhone%2016%20128GB%20256GB%20512GB9.png", "https://raw.githubusercontent.com/Uretry/linkresource/refs/heads/main/9%E4%B9%9DApple%20iPhone%2016%20128GB%20256GB%20512GB10.png"], capacity: "128GB / 256GB / 512GB – 下单时请注明" },
+        { name: "Apple iPhone 17", spec: "128GB / 256GB / 512GB", market: 84999, our: 55249, discount: 35, img: "📱", stock: 3, colors: ["薰衣草紫","鼠尾草绿","雾蓝色","白色","黑色"], colorValues: ["#b6a3dd","#a8b39a","#b7c6e3","#f5f5f7","#1a1a1a"], gift: "赠品：透明保护壳 + 屏幕保护膜", images: ["https://raw.githubusercontent.com/Uretry/linkresource/refs/heads/main/10%E5%8D%81Apple%20iPhone%2017%20128GB%20256GB%20512GB.png", "https://raw.githubusercontent.com/Uretry/linkresource/refs/heads/main/10%E5%8D%81Apple%20iPhone%2017%20128GB%20256GB%20512GB2.png", "https://raw.githubusercontent.com/Uretry/linkresource/refs/heads/main/10%E5%8D%81Apple%20iPhone%2017%20128GB%20256GB%20512GB3.png", "https://raw.githubusercontent.com/Uretry/linkresource/refs/heads/main/10%E5%8D%81Apple%20iPhone%2017%20128GB%20256GB%20512GB4.png"], capacity: "128GB / 256GB / 512GB – 下单时请注明" },
+        { name: "Apple iPhone 18", spec: "128GB / 256GB / 512GB", market: 90000, our: 58500, discount: 35, img: "📱", stock: 3, colors: ["深樱桃","浅蓝色","银灰色","黑灰色"], colorValues: ["#5d2330","#a9c4de","#c0c4c9","#3a3a3c"], gift: "赠品：透明保护壳 + 屏幕保护膜", images: ["https://raw.githubusercontent.com/Uretry/linkresource/refs/heads/main/11%E5%8D%81%E4%B8%80Apple%20iPhone%2018%20128GB%20256GB%20512GB.png", "https://raw.githubusercontent.com/Uretry/linkresource/refs/heads/main/11%E5%8D%81%E4%B8%80Apple%20iPhone%2018%20128GB%20256GB%20512GB2.png", "https://raw.githubusercontent.com/Uretry/linkresource/refs/heads/main/11%E5%8D%81%E4%B8%80Apple%20iPhone%2018%20128GB%20256GB%20512GB3.png", "https://raw.githubusercontent.com/Uretry/linkresource/refs/heads/main/11%E5%8D%81%E4%B8%80Apple%20iPhone%2018%20128GB%20256GB%20512GB4.png"], capacity: "128GB / 256GB / 512GB – 下单时请注明" }
+      ],
+      watches: [
+        { name: "Huawei Watch GT 5", spec: "46mm", market: 204, our: 133, discount: 35, img: "⌚", stock: 6, colors: ["黑色","银色"], colorValues: ["#1a1a1a","#c0c0c0"], gift: "赠品：备用表带 + 屏幕保护膜", images: ["https://raw.githubusercontent.com/Uretry/linkresource/refs/heads/main/11%E5%8D%81%E4%B8%80%20Huawei%20Watch%20GT%205.png", "https://raw.githubusercontent.com/Uretry/linkresource/refs/heads/main/11%E5%8D%81%E4%B8%80%20Huawei%20Watch%20GT%2052.png", "https://raw.githubusercontent.com/Uretry/linkresource/refs/heads/main/11%E5%8D%81%E4%B8%80%20Huawei%20Watch%20GT%2053.png"] },
+        { name: "Huawei Watch GT 6", spec: "46mm", market: 257, our: 167, discount: 35, img: "⌚", stock: 4, colors: ["黑色","银色"], colorValues: ["#1a1a1a","#c0c0c0"], gift: "赠品：备用表带 + 屏幕保护膜", images: ["https://raw.githubusercontent.com/Uretry/linkresource/refs/heads/main/12%E5%8D%81%E4%BA%8CHuawei%20Watch%20GT%206.png", "https://raw.githubusercontent.com/Uretry/linkresource/refs/heads/main/12%E5%8D%81%E4%BA%8CHuawei%20Watch%20GT%2062.png", "https://raw.githubusercontent.com/Uretry/linkresource/refs/heads/main/12%E5%8D%81%E4%BA%8CHuawei%20Watch%20GT%2063.png"] },
+        { name: "Huawei Watch GT 6 Pro", spec: "46mm 钛金属", market: 489, our: 318, discount: 35, img: "⌚", stock: 3, colors: ["钛色","黑色"], colorValues: ["#a8a8a8","#1a1a1a"], gift: "赠品：备用表带 + 屏幕保护膜", images: ["https://raw.githubusercontent.com/Uretry/linkresource/refs/heads/main/13%E5%8D%81%E4%B8%89Huawei%20Watch%20GT%206%20Pro%2046mm%20%E9%92%9B%E9%87%91%E5%B1%9E.png", "https://raw.githubusercontent.com/Uretry/linkresource/refs/heads/main/13%E5%8D%81%E4%B8%89Huawei%20Watch%20GT%206%20Pro%2046mm%20%E9%92%9B%E9%87%91%E5%B1%9E2.png", "https://raw.githubusercontent.com/Uretry/linkresource/refs/heads/main/13%E5%8D%81%E4%B8%89Huawei%20Watch%20GT%206%20Pro%2046mm%20%E9%92%9B%E9%87%91%E5%B1%9E3.png"] },
+        { name: "Huawei Watch Fit 5 Pro", spec: "", market: 307, our: 200, discount: 35, img: "⌚", stock: 7, colors: ["黑色","白色","粉色"], colorValues: ["#1a1a1a","#ffffff","#f4a0b0"], gift: "赠品：备用表带 + 屏幕保护膜", images: ["https://raw.githubusercontent.com/Uretry/linkresource/refs/heads/main/14%E5%8D%81%E5%9B%9B%20Huawei%20Watch%20Fit%205%20Pro.png", "https://raw.githubusercontent.com/Uretry/linkresource/refs/heads/main/14%E5%8D%81%E5%9B%9B%20Huawei%20Watch%20Fit%205%20Pro2.png", "https://raw.githubusercontent.com/Uretry/linkresource/refs/heads/main/14%E5%8D%81%E5%9B%9B%20Huawei%20Watch%20Fit%205%20Pro3.png"] }
+      ],
+      earphones: [
+        { name: "Xiaomi Redmi Buds 8 Pro ANC", spec: "TWS", market: 113, our: 74, discount: 35, img: "🎧", stock: 10, colors: ["黑色","白色"], colorValues: ["#1a1a1a","#ffffff"], gift: "赠品：硅胶耳套 + 收纳盒", images: ["https://raw.githubusercontent.com/Uretry/linkresource/refs/heads/main/15%E5%8D%81%E4%BA%94%20Xiaomi%20Redmi%20Buds%208%20Pro%20ANC%20TWS.png", "https://raw.githubusercontent.com/Uretry/linkresource/refs/heads/main/15%E5%8D%81%E4%BA%94%20Xiaomi%20Redmi%20Buds%208%20Pro%20ANC%20TWS2.png", "https://raw.githubusercontent.com/Uretry/linkresource/refs/heads/main/15%E5%8D%81%E4%BA%94%20Xiaomi%20Redmi%20Buds%208%20Pro%20ANC%20TWS3.png"] },
+        { name: "Xiaomi Buds 5 Pro", spec: "TWS", market: 235, our: 153, discount: 35, img: "🎧", stock: 8, colors: ["黑色","白色"], colorValues: ["#1a1a1a","#ffffff"], gift: "赠品：硅胶耳套 + 收纳盒", images: ["https://raw.githubusercontent.com/Uretry/linkresource/refs/heads/main/17%E5%8D%81%E4%B8%83Xiaomi%20Buds%205%20Pro%20TWS.png", "https://raw.githubusercontent.com/Uretry/linkresource/refs/heads/main/17%E5%8D%81%E4%B8%83Xiaomi%20Buds%205%20Pro%20TWS2.png", "https://raw.githubusercontent.com/Uretry/linkresource/refs/heads/main/17%E5%8D%81%E4%B8%83Xiaomi%20Buds%205%20Pro%20TWS3.png"] }
+      ]
+    };
+
+    // ============================================================
+    // 3. 渲染产品
+    // ============================================================
+    function renderProducts(category, containerId) {
+      const container = document.getElementById(containerId);
+      if (!container) return;
+      const items = productData[category];
+      if (!items) return;
+      items.forEach((p, index) => {
+        const card = document.createElement('div');
+        card.className = 'product-card';
+        const mainImg = p.images && p.images.length > 0 ? p.images[0] : 'https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=400&h=300&fit=crop';
+        const stockHtml = p.stock !== undefined ? `<div class="stock-badge">🔥 最后 ${p.stock} 件（安卡拉仓库）</div>` : '';
+        const colorsHtml = p.colors ? `<div class="colors">${p.colors.map((c, i) => `<span class="dot" style="background:${p.colorValues[i] || '#ccc'};" title="${c}"></span>`).join('')}</div>` : '';
+        const giftHtml = p.gift ? `<div class="gift"><i class="fas fa-gift"></i> ${p.gift}</div>` : '';
+        const capacityHtml = p.capacity ? `<div style="font-size:0.7rem; color:#94a3b8; margin:2px 0;">📦 ${p.capacity}</div>` : '';
+        const iconMap = { '📱': 'mobile-alt', '⌚': 'clock', '🎧': 'headphones' };
+        const iconClass = iconMap[p.img] || 'box';
+        const authBadge = `<div class="authenticity-badge"><i class="fas fa-shield-alt"></i> 原装包装、注册并带发票。IMEI 可通过 e-Devlet 查询。</div>`;
+        const zeroRiskBadge = `<div class="zero-risk-badge"><i class="fas fa-check-circle"></i> 零风险</div>`;
+        const stockUrgency = `<div class="stock-urgency"><i class="fas fa-clock"></i> 最后 ${p.stock} 件</div>`;
+
+        card.innerHTML = `
+          <div class="product-image" data-category="${category}" data-index="${index}">
+            <img src="${mainImg}" alt="${p.name}" loading="lazy" />
+            <span class="badge-gallery"><i class="fas fa-images"></i> ${p.images ? p.images.length : 1} 张图片</span>
+            ${zeroRiskBadge}
+            ${stockUrgency}
+          </div>
+          <div class="product-body">
+            <h4>${p.name}</h4>
+            <div class="spec">${p.spec}</div>
+            ${colorsHtml}
+            ${giftHtml}
+            ${capacityHtml}
+            ${authBadge}
+            ${stockHtml}
+            <div class="price-row">
+              <span class="market">市场价 ₺${(p.market * 34).toFixed(0)}</span>
+              <span class="our">您的价格 ₺${(p.our * 34).toFixed(0)}</span>
+              <span class="discount">节省 %${p.discount}</span>
+            </div>
+            <div style="font-size:0.75rem; color:#94a3b8;">~ ${p.our} USD（USDT 等值）*汇率实时波动</div>
+            <a href="#order" class="btn-order"><i class="fas fa-shopping-cart"></i> 免费申请</a>
+            <a href="#verify" class="verify-link"><i class="fas fa-shield-alt"></i> 如何验证正品？</a>
+          </div>
+        `;
+        container.appendChild(card);
+        const imgDiv = card.querySelector('.product-image');
+        imgDiv.addEventListener('click', function(e) { e.stopPropagation(); openModal(category, index); });
+      });
+    }
+
+    renderProducts('phones', 'phone-grid');
+    renderProducts('watches', 'watch-grid');
+    renderProducts('earphones', 'earphone-grid');
+
+    // ============================================================
+    // 4. 模态框
+    // ============================================================
+    let currentCategory = '', currentIndex = 0;
+    const modal = document.getElementById('productModal');
+    const modalMainImg = document.getElementById('modalMainImg');
+    const modalThumbs = document.getElementById('modalThumbs');
+    const modalTitle = document.getElementById('modalTitle');
+    const modalPrice = document.getElementById('modalPrice');
+    const modalColors = document.getElementById('modalColors');
+    const modalGift = document.getElementById('modalGift');
+    const modalClose = document.getElementById('modalClose');
+    const modalPrev = document.getElementById('modalPrev');
+    const modalNext = document.getElementById('modalNext');
+
+    function openModal(category, index) {
+      currentCategory = category; currentIndex = index;
+      const items = productData[category];
+      const p = items[index];
+      if (!p) return;
+      const images = p.images || [p.image || 'https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=600&h=400&fit=crop'];
+      modalMainImg.src = images[0];
+      modalThumbs.innerHTML = '';
+      images.forEach((img, i) => {
+        const thumb = document.createElement('img');
+        thumb.src = img;
+        thumb.alt = '视图 ' + (i + 1);
+        thumb.addEventListener('click', function() { modalMainImg.src = img; });
+        modalThumbs.appendChild(thumb);
+      });
+      modalTitle.textContent = p.name + ' ' + p.spec;
+      modalPrice.textContent = '您的价格 ₺' + (p.our * 34).toFixed(0) + ' (~ $' + p.our + ' USD)';
+      modalColors.innerHTML = p.colors ? '<strong>颜色：</strong> ' + p.colors.map((c, i) =>
+        '<span class="dot" style="background:' + (p.colorValues[i] || '#ccc') + ';display:inline-block;width:24px;height:24px;border-radius:50%;border:1px solid rgba(255,255,255,0.1);margin:0 4px;" title="' + c + '"></span>').join('') : '';
+      modalGift.textContent = p.gift || '';
+      modal.classList.add('active');
+      document.body.style.overflow = 'hidden';
+      modal._items = items;
+      modal._images = images;
+      modal._currentImageIndex = 0;
+    }
+
+    function closeModal() { modal.classList.remove('active'); document.body.style.overflow = ''; }
+
+    function changeImage(delta) {
+      const items = modal._items;
+      if (!items) return;
+      const p = items[currentIndex];
+      const images = p.images || [p.image || 'https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=600&h=400&fit=crop'];
+      let idx = (modal._currentImageIndex || 0) + delta;
+      if (idx < 0) idx = images.length - 1;
+      if (idx >= images.length) idx = 0;
+      modal._currentImageIndex = idx;
+      modalMainImg.src = images[idx];
+      const thumbs = modalThumbs.querySelectorAll('img');
+      thumbs.forEach((t, i) => { t.style.border = i === idx ? '2px solid var(--color-gold)' : '2px solid transparent'; });
+    }
+
+    modalClose.addEventListener('click', closeModal);
+    modal.addEventListener('click', function(e) { if (e.target === modal) closeModal(); });
+    modalPrev.addEventListener('click', function(e) { e.stopPropagation(); changeImage(-1); });
+    modalNext.addEventListener('click', function(e) { e.stopPropagation(); changeImage(1); });
+    document.addEventListener('keydown', function(e) {
+      if (!modal.classList.contains('active')) return;
+      if (e.key === 'Escape') closeModal();
+      if (e.key === 'ArrowLeft') changeImage(-1);
+      if (e.key === 'ArrowRight') changeImage(1);
+    });
+
+    // ============================================================
+    // 5. 表单下拉
+    // ============================================================
+    function populateSelect() {
+      const select = document.getElementById('product');
+      if (!select) return;
+      const all = [];
+      for (const cat in productData) {
+        productData[cat].forEach(p => { all.push(p.name + ' ' + p.spec + ' - 节省35%'); });
+      }
+      all.forEach(label => {
+        const opt = document.createElement('option');
+        opt.value = label;
+        opt.textContent = label;
+        select.appendChild(opt);
+      });
+    }
+    populateSelect();
+
+    // ============================================================
+    // 6. 汇率计算器
+    // ============================================================
+    document.getElementById('tryInput').addEventListener('input', function() {
+      const tryVal = parseFloat(this.value) || 0;
+      document.getElementById('usdtResult').textContent = (tryVal / 34).toFixed(2);
+    });
+
+    // ============================================================
+    // 7. 价格计算器
+    // ============================================================
+    const calcModel = document.getElementById('calcModel');
+    const calcUsdtRate = document.getElementById('calcUsdtRate');
+    const calcUsdt = document.getElementById('calcUsdt');
+    const calcTry = document.getElementById('calcTry');
+
+    function updateCalculator() {
+      const usdtPrice = parseFloat(calcModel.value) || 0;
+      const rate = parseFloat(calcUsdtRate.value) || 34;
+      calcUsdt.textContent = usdtPrice + ' USDT';
+      calcTry.textContent = (usdtPrice * rate).toFixed(0) + ' ₺';
+    }
+    calcModel.addEventListener('change', updateCalculator);
+    calcUsdtRate.addEventListener('input', updateCalculator);
+    updateCalculator();
+
+    // ============================================================
+    // 8. IMEI 模拟
+    // ============================================================
+    document.getElementById('imeiCheckBtn').addEventListener('click', function() {
+      const input = document.getElementById('imeiInput');
+      const result = document.getElementById('imeiResult');
+      const imei = input.value.trim();
+
+      if (imei.length !== 15 || !/^\d+$/.test(imei)) {
+        result.className = 'result error';
+        result.textContent = '❌ 请输入15位有效IMEI号码（例如：123456789012345）';
+        result.style.display = 'block';
+        return;
+      }
+
+      result.className = 'result success';
+      result.innerHTML = '<i class="fas fa-check-circle"></i> ✅ IMEI 号码已在 e-Devlet 注册且为正品（HK Tech 安卡拉仓库保障）';
+      result.style.display = 'block';
+    });
+
+    document.getElementById('imeiInput').addEventListener('keypress', function(e) {
+      if (e.key === 'Enter') document.getElementById('imeiCheckBtn').click();
+    });
+
+    // ============================================================
+    // 9. 物流追踪
+    // ============================================================
+    document.getElementById('trackingBtn').addEventListener('click', function() {
+      const input = document.getElementById('trackingInput');
+      const result = document.getElementById('trackingResult');
+      const timeline = document.getElementById('trackingTimeline');
+      const query = input.value.trim();
+
+      if (query.length < 4) {
+        result.style.display = 'block';
+        result.innerHTML = '<div style="color:#f87171; font-weight:500;"><i class="fas fa-exclamation-circle"></i> 请输入有效的订单号或手机号</div>';
+        timeline.style.display = 'none';
+        return;
+      }
+
+      result.style.display = 'block';
+      timeline.style.display = 'block';
+
+      const statuses = [
+        { title: '已接单', time: '2026-08-09 10:30', desc: '您的订单已成功创建。', done: true },
+        { title: '已从安卡拉仓库发货', time: '2026-08-09 14:20', desc: '您的产品已从安卡拉仓库交付快递。', done: true },
+        { title: '已交付快递 – 派送中', time: '2026-08-10 08:15', desc: '快递员正在派送途中。', done: true },
+        { title: '已送达 – 等待确认', time: '即将', desc: '产品送达后等待您的确认。', done: false }
+      ];
+
+      const lastDigit = parseInt(query.slice(-1)) || 0;
+      const showUpTo = Math.min(2 + (lastDigit % 3), statuses.length);
+
+      let html = '<div style="font-weight:600; margin-bottom:8px; color:#fff;">📋 订单状态</div>';
+      statuses.forEach((s, i) => {
+        const isDone = i < showUpTo;
+        const iconClass = isDone ? 'done' : (i === showUpTo ? 'pending' : 'future');
+        const iconContent = isDone ? '<i class="fas fa-check"></i>' : (i === showUpTo ? '<i class="fas fa-clock"></i>' : '<i class="fas fa-circle"></i>');
+        html += `
+          <div class="status-item">
+            <div class="icon ${iconClass}">${iconContent}</div>
+            <div class="info">
+              <div class="title">${s.title}</div>
+              <div class="time">${s.time}</div>
+              <div class="desc">${s.desc}</div>
+            </div>
+          </div>
+        `;
+      });
+      html += '<div style="margin-top:12px; padding-top:12px; border-top:1px solid rgba(255,255,255,0.04); font-size:0.8rem; color:#94a3b8; text-align:center;"><i class="fas fa-info-circle"></i> 物流状态实时更新</div>';
+      result.innerHTML = html;
+
+      const timelineItems = timeline.querySelectorAll('.tl-item');
+      timelineItems.forEach((item, idx) => {
+        const icon = item.querySelector('.tl-icon');
+        if (idx < showUpTo) {
+          icon.className = 'tl-icon done';
+          icon.innerHTML = '<i class="fas fa-check"></i>';
+        } else if (idx === showUpTo) {
+          icon.className = 'tl-icon pending';
+          icon.innerHTML = '<i class="fas fa-clock"></i>';
+        } else {
+          icon.className = 'tl-icon future';
+          icon.innerHTML = '<i class="fas fa-circle"></i>';
+        }
+      });
+    });
+
+    document.getElementById('trackingInput').addEventListener('keypress', function(e) {
+      if (e.key === 'Enter') document.getElementById('trackingBtn').click();
+    });
+
+    // ============================================================
+    // 10. 客户评价
+    // ============================================================
+    const reviewsData = [
+      { name: "Ahmet K.", city: "安卡拉", text: "手机2天就到了。快递员在门口等着，我打开检查了IMEI，然后用USDT付款。服务太棒了！绝对是正品。", initial: "A", image: "https://raw.githubusercontent.com/Uretry/linkresource/refs/heads/main/1Xiaomi%2014T%2012GB%20RAM%20%2B%20256GB%20%E5%AD%98%E5%82%A8.png" },
+      { name: "Mehmet Y.", city: "伊斯坦布尔", text: "比市场便宜很多，绝对是正品。一开始我有点犹豫，但'先试后付'的模式说服了我。推荐给所有人。", initial: "M", image: "https://raw.githubusercontent.com/Uretry/linkresource/refs/heads/main/7%E4%B8%83.Samsung%20Galaxy%20A55%205G%208GB%20RAM%20%2B%20128GB%20%E5%AD%98%E5%82%A8.png" },
+      { name: "Elif S.", city: "伊兹密尔", text: "我买了Huawei Watch GT 6。快递很快，产品包装是原装封条的。USDT支付非常简单快捷。谢谢HK Tech！", initial: "E", image: "https://raw.githubusercontent.com/Uretry/linkresource/refs/heads/main/12%E5%8D%81%E4%BA%8CHuawei%20Watch%20GT%206.png" },
+      { name: "Can A.", city: "布尔萨", text: "我订了Xiaomi 14T Pro。我在e-Devlet上查了IMEI，完全干净。价格远低于市场，还有12个月保修。太棒了！", initial: "C", image: "https://raw.githubusercontent.com/Uretry/linkresource/refs/heads/main/2%E4%BA%8C.Xiaomi%2014T%20Pro.png" }
+    ];
+    const reviewGrid = document.getElementById('reviewGrid');
+    reviewsData.forEach(r => {
+      const div = document.createElement('div');
+      div.className = 'review-item';
+      div.innerHTML = `<div class="avatar">${r.initial}</div><div class="stars">⭐⭐⭐⭐⭐</div><div class="review-text">“${r.text}”</div><div class="review-meta"><strong>${r.name}</strong> · ${r.city}</div><img class="review-image" src="${r.image}" alt="客户收货照片" loading="lazy" />`;
+      reviewGrid.appendChild(div);
+    });
+
+    // ============================================================
+    // 11. TOAST 通知
+    // ============================================================
+    const toastMessages = [
+      { city: "安卡拉", name: "Ahmet K.", product: "Xiaomi 14T Pro", time: "5分钟前" },
+      { city: "伊斯坦布尔", name: "Mehmet Y.", product: "Samsung Galaxy A55", time: "12分钟前" },
+      { city: "伊兹密尔", name: "Ayşe S.", product: "Huawei Watch GT 6", time: "18分钟前" },
+      { city: "布尔萨", name: "Can A.", product: "Apple iPhone 16", time: "25分钟前" },
+      { city: "安塔利亚", name: "Zeynep T.", product: "Xiaomi Redmi Note 14 Pro", time: "32分钟前" },
+      { city: "科尼亚", name: "Mustafa D.", product: "Huawei Nova 13", time: "41分钟前" },
+      { city: "安卡拉", name: "Fatma Y.", product: "Xiaomi Buds 5 Pro", time: "48分钟前" },
+      { city: "伊斯坦布尔", name: "Burak Ş.", product: "Samsung Galaxy A55", time: "56分钟前" }
+    ];
+    let toastIndex = 0;
+    const container = document.getElementById('toastContainer');
+
+    function showToast() {
+      const msg = toastMessages[toastIndex % toastMessages.length];
+      toastIndex++;
+      const toast = document.createElement('div');
+      toast.className = 'toast-item';
+      toast.innerHTML = '<div class="toast-icon"><i class="fas fa-shopping-bag"></i></div><div class="toast-text"><strong>' + msg.city + '</strong> · ' + msg.name + ' 申请了产品：<strong>' + msg.product + '</strong>（先验后付）<div class="toast-time">' + msg.time + '</div></div>';
+      container.appendChild(toast);
+      setTimeout(function() {
+        if (toast.parentNode) {
+          toast.style.opacity = '0';
+          toast.style.transition = 'opacity 0.5s';
+          setTimeout(function() { if (toast.parentNode) toast.remove(); }, 500);
+        }
+      }, 6000);
+    }
+    setTimeout(showToast, 3000);
+    setInterval(function() { var delay = Math.random() * 5000 + 10000; setTimeout(showToast, delay); }, 15000);
+
+    // ============================================================
+    // 12. 法律模态框
+    // ============================================================
+    var legalModal = document.getElementById('legalModal');
+    var legalModalClose = document.getElementById('legalModalClose');
+    var legalTitle = document.getElementById('legalTitle');
+    var legalBody = document.getElementById('legalBody');
+
+    document.getElementById('privacyLink').addEventListener('click', function(e) {
+      e.preventDefault();
+      legalTitle.textContent = '隐私政策（KVKK）';
+      legalBody.innerHTML = `
+        <p><strong>HK Tech 隐私政策</strong></p>
+        <p>作为 HK Tech，您的个人数据安全是我们的首要任务。本政策说明您访问我们网站和使用我们服务时收集的信息如何处理。</p>
+        <p><strong>收集的数据：</strong> 姓名、姓氏、电话号码、送货地址、电子邮件地址和订单详情。</p>
+        <p><strong>处理目的：</strong> 处理您的订单、安排配送、提供客户服务以及履行法律义务。</p>
+        <p><strong>数据共享：</strong> 您的信息仅在法律要求时与快递公司和法律机构共享。不会出于商业目的与第三方共享。</p>
+        <p><strong>安全：</strong> 您的数据通过加密协议保护，仅限授权人员访问。</p>
+        <p><strong>您的权利（KVKK 第11条）：</strong> 您有权了解您的数据是否被处理、请求删除或更正、提出异议和请求数据迁移。</p>
+        <p style="font-size:0.85rem; color:#94a3b8;">最后更新：2026年8月</p>
+      `;
+      legalModal.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    });
+
+    document.getElementById('termsLink').addEventListener('click', function(e) {
+      e.preventDefault();
+      legalTitle.textContent = '服务条款';
+      legalBody.innerHTML = `
+        <p><strong>HK Tech 服务条款</strong></p>
+        <p>使用我们的网站即表示您接受以下条款：</p>
+        <p><strong>1. 产品：</strong> 我们所有产品均为100%正品，原装包装、注册并带发票。产品仅由您亲自开启。</p>
+        <p><strong>2. 付款：</strong> 付款仅在产品送达并获得您的确认后进行，使用 USDT。不要求预付款。</p>
+        <p><strong>3. 退货：</strong> 您享有14天无理由退货权。退货运费由我们承担。</p>
+        <p><strong>4. 保修：</strong> 所有产品享有12个月全球科技保修。保修期内运费由我们承担。</p>
+        <p><strong>5. 隐私：</strong> 您的个人信息将保密，仅用于订单处理。</p>
+        <p><strong>6. 变更：</strong> HK Tech 保留随时更新服务条款的权利。</p>
+        <p style="font-size:0.85rem; color:#94a3b8;">最后更新：2026年8月</p>
+      `;
+      legalModal.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    });
+
+    document.getElementById('contractLink').addEventListener('click', function(e) {
+      e.preventDefault();
+      legalTitle.textContent = '远程销售合同';
+      legalBody.innerHTML = `
+        <p><strong>远程销售合同</strong></p>
+        <p><strong>卖方：</strong> HK Tech（环球科技贸易集团）· 税号: 342 098 5412 · 地址: Ostim OSB Mahallesi, 123. Cadde No:45, Yenimahalle, 安卡拉</p>
+        <p><strong>买方：</strong> 在订单表中输入信息的人。</p>
+        <p><strong>1. 主题：</strong> 本合同规范卖方出售给买方的产品的特性、配送、付款和撤销权条件。</p>
+        <p><strong>2. 订单和付款：</strong> 订单确认后，产品从安卡拉仓库发货。付款在产品送达并由买方检查后以 USDT 进行。不要求预付款。</p>
+        <p><strong>3. 配送：</strong> 产品在 1-3 个工作日内免费配送到买方指定的地址。</p>
+        <p><strong>4. 撤销权（退货）：</strong> 买方有权在产品送达之日起 14（十四）天内，无需任何理由且无需支付罚金，撤销合同。退货运费由卖方承担。</p>
+        <p><strong>5. 保修：</strong> 所有产品享有12个月全球科技保修。保修期内发生的故障，由安卡拉服务中心免费维修。</p>
+        <p><strong>6. 争议：</strong> 因本合同产生的争议，适用土耳其共和国法律，安卡拉法院具有管辖权。</p>
+        <p style="font-size:0.85rem; color:#94a3b8;">最后更新：2026年8月</p>
+      `;
+      legalModal.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    });
+
+    document.getElementById('refundLink').addEventListener('click', function(e) {
+      e.preventDefault();
+      legalTitle.textContent = '取消和退货条款';
+      legalBody.innerHTML = `
+        <p><strong>取消和退货条款</strong></p>
+        <p><strong>1. 撤销权：</strong> 买方有权在产品送达之日起 14（十四）天内，无需任何理由撤销合同。</p>
+        <p><strong>2. 退货流程：</strong> 您只需通过 <strong>Telegram</strong> 或 <strong>邮件</strong> 通知我们您的退货请求。退货运费由我们承担。</p>
+        <p><strong>3. 退货条件：</strong> 产品必须保持原装包装、未使用且无损坏。检查后确认退货。</p>
+        <p><strong>4. 退货地址：</strong> Ostim OSB Mahallesi, 123. Cadde No:45, Yenimahalle, 安卡拉, 土耳其</p>
+        <p><strong>5. 退货时间：</strong> 产品到达我方后，退货流程最迟在 7 个工作日内完成。</p>
+        <p style="font-size:0.85rem; color:#94a3b8;">根据《消费者保护法》第6502号规定。</p>
+      `;
+      legalModal.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    });
+
+    legalModalClose.addEventListener('click', function() {
+      legalModal.classList.remove('active');
+      document.body.style.overflow = '';
+    });
+    legalModal.addEventListener('click', function(e) {
+      if (e.target === legalModal) {
+        legalModal.classList.remove('active');
+        document.body.style.overflow = '';
+      }
+    });
+
+    // ============================================================
+    // 13. FAQ 折叠
+    // ============================================================
+    document.querySelectorAll('.faq-item .q').forEach(function(question) {
+      question.addEventListener('click', function() {
+        var parent = this.parentElement;
+        parent.classList.toggle('active');
+      });
+    });
+
+    // ============================================================
+    // 14. 表单提交 + 订单号 + Telegram 预填
+    // ============================================================
+    document.getElementById('orderForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      const name = document.getElementById('name').value.trim();
+      const phone = document.getElementById('phone').value.trim();
+      const address = document.getElementById('address').value.trim();
+      const productSelect = document.getElementById('product');
+      const productText = productSelect.options[productSelect.selectedIndex]?.text || '未指定';
+      const quantity = document.getElementById('quantity').value;
+
+      if (!name || !phone || !address) {
+        alert('请填写所有必填字段。');
+        return;
+      }
+
+      const orderNum = '#HK-' + String(Math.floor(10000 + Math.random() * 90000));
+      document.getElementById('orderNumber').textContent = orderNum;
+
+      document.getElementById('orderForm').style.display = 'none';
+      const successDiv = document.getElementById('successMessage');
+      successDiv.style.display = 'block';
+
+      const message = encodeURIComponent(
+        '您好，我想下单。\n产品：' + productText + '\n数量：' + quantity + '\n姓名：' + name + '\n电话：' + phone + '\n地址：' + address + '\n订单号：' + orderNum
+      );
+      const telegramUrl = TELEGRAM_LINK + '?text=' + message;
+
+      setTimeout(function() { window.open(telegramUrl, '_blank'); }, 2500);
+    });
+
+    // ============================================================
+    // 15. 平滑滚动
+    // ============================================================
+    document.querySelectorAll('a[href^="#"]').forEach(function(anchor) {
+      anchor.addEventListener('click', function(e) {
+        var href = this.getAttribute('href');
+        if (href === '#') return;
+        e.preventDefault();
+        var target = document.querySelector(href);
+        if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+    });
+  </script>
+</body>
+</html>
